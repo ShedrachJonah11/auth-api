@@ -1,1 +1,1 @@
-deploy: deploy to local server for testing
+feat: initial project setup
