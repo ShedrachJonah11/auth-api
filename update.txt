@@ -1,1 +1,1 @@
-feat: implement user registration functionality
+feat: setup JWT authentication service
