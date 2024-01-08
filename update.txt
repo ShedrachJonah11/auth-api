@@ -1,1 +1,1 @@
-feat: setup JWT authentication service
+feat: add JWT guard for route protection
