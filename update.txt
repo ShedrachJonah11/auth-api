@@ -1,1 +1,1 @@
-feat: create login functionality with JWT token
+refactor: user service for validation
