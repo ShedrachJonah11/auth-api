@@ -1,1 +1,1 @@
-fix: user validation logic bugs
+feat: improve security by adding validation
