@@ -1,1 +1,1 @@
-feat: improve security by adding validation
+fix: update dependencies for security patches
