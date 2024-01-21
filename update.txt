@@ -1,1 +1,1 @@
-refactor: code for scalability
+feat: setup error handling and validation pipes
