@@ -1,1 +1,1 @@
-feat: setup error handling and validation pipes
+feat: improve JWT token generation
