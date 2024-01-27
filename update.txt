@@ -1,1 +1,1 @@
-fix: minor bugs and improve UX
+feat: enhance security with role-based access
