@@ -1,1 +1,1 @@
-feat: enhance security with role-based access
+docs: update project documentation
