@@ -1,1 +1,1 @@
-feat: add password reset functionality
+feat: implement email verification
