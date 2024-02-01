@@ -1,1 +1,1 @@
-feat: implement email verification
+feat: add rate limiting for API endpoints
