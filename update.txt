@@ -1,1 +1,1 @@
-feat: add rate limiting for API endpoints
+feat: implement request logging
