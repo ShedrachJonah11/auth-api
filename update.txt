@@ -1,1 +1,1 @@
-feat: implement request logging
+feat: add API documentation with Swagger
