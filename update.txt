@@ -1,1 +1,1 @@
-feat: add API documentation with Swagger
+feat: implement user profile management
