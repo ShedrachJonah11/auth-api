@@ -1,1 +1,1 @@
-feat: implement user profile management
+feat: add social authentication
