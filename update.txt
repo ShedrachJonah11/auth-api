@@ -1,1 +1,1 @@
-feat: add social authentication
+feat: implement two-factor authentication
