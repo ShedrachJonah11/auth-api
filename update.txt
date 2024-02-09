@@ -1,1 +1,1 @@
-feat: implement session management
+feat: add user activity tracking
