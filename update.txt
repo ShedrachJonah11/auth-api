@@ -1,1 +1,1 @@
-feat: add monitoring and alerting
+feat: implement automated testing pipeline
