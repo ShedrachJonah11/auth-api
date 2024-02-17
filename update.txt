@@ -1,1 +1,1 @@
-feat: implement automated testing pipeline
+feat: add deployment automation
