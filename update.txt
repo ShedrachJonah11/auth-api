@@ -1,1 +1,1 @@
-feat: add deployment automation
+feat: implement security scanning
