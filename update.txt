@@ -1,1 +1,1 @@
-feat: implement disaster recovery
+feat: add load balancing
