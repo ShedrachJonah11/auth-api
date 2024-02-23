@@ -1,1 +1,1 @@
-feat: implement microservices architecture
+feat: add service discovery
