@@ -1,1 +1,1 @@
-feat: add service discovery
+feat: implement message queue
