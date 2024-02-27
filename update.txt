@@ -1,1 +1,1 @@
-feat: implement circuit breaker pattern
+feat: add retry mechanism
