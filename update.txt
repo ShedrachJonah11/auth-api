@@ -1,1 +1,1 @@
-feat: add retry mechanism
+feat: implement graceful shutdown
