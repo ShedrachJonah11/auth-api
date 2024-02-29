@@ -1,1 +1,1 @@
-feat: implement graceful shutdown
+feat: add horizontal scaling
