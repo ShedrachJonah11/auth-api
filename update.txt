@@ -1,1 +1,1 @@
-feat: add horizontal scaling
+feat: implement blue-green deployment
