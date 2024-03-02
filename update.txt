@@ -1,1 +1,1 @@
-feat: implement blue-green deployment
+feat: add canary releases
