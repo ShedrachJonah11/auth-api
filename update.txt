@@ -1,1 +1,1 @@
-feat: add canary releases
+feat: implement feature flags
