@@ -1,1 +1,1 @@
-feat: implement notification system
+feat: add real-time updates
