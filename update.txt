@@ -1,1 +1,1 @@
-feat: implement image processing
+feat: add search functionality
