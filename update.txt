@@ -1,1 +1,1 @@
-Fixed UI issues in the admin panel
+Updated environment variable configurations
