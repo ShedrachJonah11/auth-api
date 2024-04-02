@@ -1,1 +1,1 @@
-feat: add data catalog
+feat: implement data dictionary
