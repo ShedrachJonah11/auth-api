@@ -1,1 +1,1 @@
-feat: add data reporting
+feat: implement data dashboard
