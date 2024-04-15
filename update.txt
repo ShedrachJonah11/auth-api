@@ -1,1 +1,1 @@
-feat: implement data monitoring
+feat: add data logging
