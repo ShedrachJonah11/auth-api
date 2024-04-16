@@ -1,1 +1,1 @@
-feat: add data logging
+feat: implement data tracing
