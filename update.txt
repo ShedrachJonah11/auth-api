@@ -1,1 +1,1 @@
-feat: add data profiling
+feat: implement data discovery
