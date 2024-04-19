@@ -1,1 +1,1 @@
-feat: implement data discovery
+feat: add data exploration
