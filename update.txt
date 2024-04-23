@@ -1,1 +1,1 @@
-feat: implement machine learning
+feat: add artificial intelligence
