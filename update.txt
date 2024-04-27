@@ -1,1 +1,1 @@
-feat: implement speech recognition
+feat: add text analysis
