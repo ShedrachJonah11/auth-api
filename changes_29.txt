@@ -1,0 +1,3 @@
+Fixed bugs in the authentication flow and token handling
+Additional changes and improvements
+Date: 2024-04-30 13:41:00
