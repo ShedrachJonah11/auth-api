@@ -1,1 +1,1 @@
-feat: implement fraud detection
+feat: add anomaly detection
