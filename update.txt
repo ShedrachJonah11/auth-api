@@ -1,1 +1,1 @@
-feat: add anomaly detection
+feat: implement predictive analytics
