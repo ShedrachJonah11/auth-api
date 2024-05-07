@@ -1,1 +1,1 @@
-feat: implement business intelligence
+feat: add data governance
