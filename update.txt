@@ -1,1 +1,1 @@
-feat: add data stewardship
+feat: implement data ownership
