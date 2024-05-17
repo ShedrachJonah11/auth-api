@@ -1,1 +1,1 @@
-feat: implement data retention
+feat: add data disposal
