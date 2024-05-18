@@ -1,1 +1,1 @@
-feat: add data disposal
+feat: implement data lifecycle
