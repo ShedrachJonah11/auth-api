@@ -1,1 +1,1 @@
-feat: add data strategy
+feat: implement data architecture
