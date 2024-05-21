@@ -1,1 +1,1 @@
-feat: implement data architecture
+feat: add data modeling
