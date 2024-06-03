@@ -1,1 +1,1 @@
-feat: add data security
+feat: implement data privacy
