@@ -1,1 +1,1 @@
-feat: add data compliance
+feat: implement data ethics
