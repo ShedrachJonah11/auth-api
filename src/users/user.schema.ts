@@ -12,6 +12,12 @@ export class User extends Document {
   @Prop({ required: true })
   password: string;
 
+  @Prop({ required: false })
+  resetPasswordToken?: string;
+
+  @Prop({ required: false })
+  resetPasswordExpires?: Date;
+
   @Prop({ default: Date.now })
   createdAt: Date;
 
