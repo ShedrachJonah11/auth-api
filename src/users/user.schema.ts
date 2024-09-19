@@ -18,6 +18,12 @@ export class User extends Document {
   @Prop({ required: false })
   resetPasswordExpires?: Date;
 
+  @Prop({ required: false })
+  emailVerificationToken?: string;
+
+  @Prop({ default: false })
+  isEmailVerified: boolean;
+
   @Prop({ default: Date.now })
   createdAt: Date;
 
