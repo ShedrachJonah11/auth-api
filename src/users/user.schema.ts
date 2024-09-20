@@ -24,6 +24,9 @@ export class User extends Document {
   @Prop({ default: false })
   isEmailVerified: boolean;
 
+  @Prop({ default: 'user', enum: ['user', 'admin', 'moderator'] })
+  role: string;
+
   @Prop({ default: Date.now })
   createdAt: Date;
 

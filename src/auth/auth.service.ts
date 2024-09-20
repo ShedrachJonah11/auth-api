@@ -10,6 +10,7 @@ import { RegisterDto } from './dto/register.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
+import { AssignRoleDto } from './dto/assign-role.dto';
 
 @Injectable()
 export class AuthService {
@@ -155,5 +156,30 @@ export class AuthService {
       message: 'Verification email sent',
       emailVerificationToken, // Only for development/testing
     };
+  }
+
+  async assignRole(userId: string, assignRoleDto: AssignRoleDto) {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    user.role = assignRoleDto.role;
+    await user.save();
+
+    return {
+      message: 'Role assigned successfully',
+      user: {
+        id: user._id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      },
+    };
+  }
+
+  async getUsersByRole(role: string) {
+    const users = await this.userModel.find({ role }).select('-password -resetPasswordToken -emailVerificationToken');
+    return users;
   }
 }

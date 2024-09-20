@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, Get, Request } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Request, Param } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { ThrottlerGuard } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
@@ -7,7 +7,10 @@ import { RegisterDto } from './dto/register.dto';
 import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
+import { AssignRoleDto } from './dto/assign-role.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RolesGuard } from './guards/roles.guard';
+import { Roles } from './decorators/roles.decorator';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -79,5 +82,28 @@ export class AuthController {
   @ApiResponse({ status: 429, description: 'Too many requests' })
   async resendVerificationEmail(@Body() body: { email: string }) {
     return this.authService.resendVerificationEmail(body.email);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin')
+  @Post('assign-role/:userId')
+  @ApiBearerAuth('JWT-auth')
+  @ApiOperation({ summary: 'Assign role to user (Admin only)' })
+  @ApiResponse({ status: 200, description: 'Role assigned successfully' })
+  @ApiResponse({ status: 403, description: 'Forbidden - Admin access required' })
+  @ApiResponse({ status: 404, description: 'User not found' })
+  async assignRole(@Param('userId') userId: string, @Body() assignRoleDto: AssignRoleDto) {
+    return this.authService.assignRole(userId, assignRoleDto);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('admin', 'moderator')
+  @Get('users/role/:role')
+  @ApiBearerAuth('JWT-auth')
+  @ApiOperation({ summary: 'Get users by role (Admin/Moderator only)' })
+  @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
+  @ApiResponse({ status: 403, description: 'Forbidden - Admin/Moderator access required' })
+  async getUsersByRole(@Param('role') role: string) {
+    return this.authService.getUsersByRole(role);
   }
 }
