@@ -4,6 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
+import { AuthV2Controller } from './v2/auth-v2.controller';
 import { AuthService } from './auth.service';
 import { User, UserSchema } from '../users/user.schema';
 import { JwtStrategy } from './strategies/jwt.strategy';
@@ -22,7 +23,7 @@ import { LocalStrategy } from './strategies/local.strategy';
       inject: [ConfigService],
     }),
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, AuthV2Controller],
   providers: [AuthService, JwtStrategy, LocalStrategy],
   exports: [AuthService],
 })
