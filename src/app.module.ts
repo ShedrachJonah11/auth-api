@@ -13,6 +13,7 @@ import { MetricsModule } from './metrics/metrics.module';
 import { AppConfigModule } from './config/config.module';
 import { LoggingMiddleware } from './common/middleware/logging.middleware';
 import { SecurityMiddleware } from './common/middleware/security.middleware';
+import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware';
 import { createIndexes } from './database/indexes';
 
 @Module({
@@ -52,7 +53,7 @@ export class AppModule implements NestModule, OnModuleInit {
 
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(SecurityMiddleware, LoggingMiddleware)
+      .apply(CorrelationIdMiddleware, SecurityMiddleware, LoggingMiddleware)
       .forRoutes('*');
   }
 
