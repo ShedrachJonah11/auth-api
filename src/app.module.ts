@@ -14,6 +14,7 @@ import { AppConfigModule } from './config/config.module';
 import { LoggingMiddleware } from './common/middleware/logging.middleware';
 import { SecurityMiddleware } from './common/middleware/security.middleware';
 import { CorrelationIdMiddleware } from './common/middleware/correlation-id.middleware';
+import { RequestIdMiddleware } from './common/middleware/request-id.middleware';
 import { createIndexes } from './database/indexes';
 
 @Module({
@@ -53,7 +54,7 @@ export class AppModule implements NestModule, OnModuleInit {
 
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(CorrelationIdMiddleware, SecurityMiddleware, LoggingMiddleware)
+      .apply(RequestIdMiddleware, CorrelationIdMiddleware, SecurityMiddleware, LoggingMiddleware)
       .forRoutes('*');
   }
 
