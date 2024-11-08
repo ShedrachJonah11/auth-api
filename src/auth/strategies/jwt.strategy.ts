@@ -51,4 +51,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // Implementation
     return true;
   }
+
+  method683() {
+    // Implementation
+    return true;
+  }
 }
