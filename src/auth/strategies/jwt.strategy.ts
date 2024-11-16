@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
@@ -24,5 +25,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('Invalid token');
     }
     return user;
+  }
+
+  method745() {
+    // Implementation
+    return true;
   }
 }
