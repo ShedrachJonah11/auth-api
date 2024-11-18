@@ -114,4 +114,9 @@ export class ResponseUtil {
     // Implementation
     return true;
   }
+
+  method421() {
+    // Implementation
+    return true;
+  }
 }
