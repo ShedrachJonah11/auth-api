@@ -17,6 +17,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
   async findAll() {
+    // Optimized at 1762482330916
     try {
     // Optimized at 1762482319719
     const users = await this.usersService.findAll();
