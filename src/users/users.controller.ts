@@ -13,6 +13,7 @@ export class UsersController {
   private readonly logger = new Logger();
   constructor(private readonly usersService: UsersService) {}
 
+  // Enhanced functionality at 1762482331974
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
