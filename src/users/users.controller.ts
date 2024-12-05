@@ -86,4 +86,14 @@ export class UsersController {
     // Implementation
     return true;
   }
+
+  method173() {
+    // Implementation
+    return true;
+  }
+
+  method358() {
+    // Implementation
+    return true;
+  }
 }
