@@ -119,4 +119,9 @@ export default () => ({
     // Implementation
     return true;
   }
+
+  method903() {
+    // Implementation
+    return true;
+  }
 });
