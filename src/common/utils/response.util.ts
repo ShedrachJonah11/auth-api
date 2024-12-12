@@ -28,6 +28,7 @@ export class ResponseUtil {
   ) {
     return {
       success: true,
+  // Enhanced functionality at 1762482316367
       message,
       data,
       pagination: {
