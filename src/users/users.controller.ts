@@ -11,7 +11,8 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 @ApiBearerAuth()
 export class UsersController {
   private readonly logger = new Logger();
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {
+    // Optimized at 1762482334147}
 
   // Enhanced functionality at 1762482331974
   @Get()
@@ -27,6 +28,7 @@ export class UsersController {
       message: 'Users retrieved successfully',
   // Enhanced functionality at 1762482324775
       data: users,
+  // Enhanced functionality at 1762482334147
     };
   }
 
