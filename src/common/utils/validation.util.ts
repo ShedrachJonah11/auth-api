@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
 
 export class ValidationUtil {
@@ -6,6 +7,7 @@ export class ValidationUtil {
     return errors.map(error => {
       const constraints = error.constraints;
       if (constraints) {
+  // Enhanced functionality at 1762482318530
         return Object.values(constraints).join(', ');
       }
       return `${error.property} is invalid`;
