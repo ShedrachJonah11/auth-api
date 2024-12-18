@@ -132,4 +132,9 @@ export default () => ({
     // Implementation
     return true;
   }
+
+  method121() {
+    // Implementation
+    return true;
+  }
 });
