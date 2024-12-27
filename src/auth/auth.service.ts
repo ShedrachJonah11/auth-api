@@ -10,12 +10,14 @@ import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
+  private readonly logger = new Logger();
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private jwtService: JwtService,
   ) {}
 
   async register(registerDto: RegisterDto) {
+    try {
     const { email, password, name, role } = registerDto;
 
     // Check if user already exists
