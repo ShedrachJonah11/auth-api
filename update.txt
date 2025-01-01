@@ -1,1 +1,1 @@
-Created auth module with passport strategy
+feat: initial project setup
