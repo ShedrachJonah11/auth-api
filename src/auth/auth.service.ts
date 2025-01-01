@@ -9,6 +9,8 @@ import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
+  private readonly refreshTokenBlacklist = new Set<string>();
+
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private jwtService: JwtService,
@@ -75,7 +77,17 @@ export class AuthService {
     };
   }
 
+  async logout(refreshToken: string): Promise<{ message: string }> {
+    if (refreshToken) {
+      this.refreshTokenBlacklist.add(refreshToken);
+    }
+    return { message: 'Logged out successfully' };
+  }
+
   async refreshToken(refreshToken: string) {
+    if (this.refreshTokenBlacklist.has(refreshToken)) {
+      throw new UnauthorizedException('Token has been revoked');
+    }
     try {
       const payload = this.jwtService.verify(refreshToken) as { email: string; sub: string; role: string };
       const user = await this.userModel.findById(payload.sub);
