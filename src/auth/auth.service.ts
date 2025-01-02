@@ -6,6 +6,7 @@ import * as bcrypt from 'bcryptjs';
 import { User, UserDocument } from '../users/user.schema';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { ChangePasswordDto } from './dto/change-password.dto';
 
 @Injectable()
 export class AuthService {
@@ -75,6 +76,20 @@ export class AuthService {
       token,
       refreshToken,
     };
+  }
+
+  async changePassword(userId: string, dto: ChangePasswordDto): Promise<{ message: string }> {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    const valid = await bcrypt.compare(dto.currentPassword, user.password);
+    if (!valid) {
+      throw new UnauthorizedException('Current password is incorrect');
+    }
+    user.password = await bcrypt.hash(dto.newPassword, 10);
+    await user.save();
+    return { message: 'Password changed successfully' };
   }
 
   async logout(refreshToken: string): Promise<{ message: string }> {
