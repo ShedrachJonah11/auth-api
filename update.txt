@@ -1,1 +1,1 @@
-feat: initial project setup
+feat: install dependencies
