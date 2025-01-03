@@ -8,3 +8,4 @@ All notable changes to this project will be documented in this file.
 
 - NestJS auth API project scaffold with TypeScript
 - MongoDB connection and ConfigModule
+- User schema and Mongoose model
