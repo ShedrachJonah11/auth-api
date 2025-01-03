@@ -32,4 +32,9 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // Implementation
     return true;
   }
+
+  method157() {
+    // Implementation
+    return true;
+  }
 }
