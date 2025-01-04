@@ -1,1 +1,1 @@
-feat: configure MongoDB connection
+feat: create User schema and model
