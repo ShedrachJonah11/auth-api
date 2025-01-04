@@ -7,6 +7,7 @@ export default () => ({
     uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/user-auth',
   },
   jwt: {
+  // Enhanced functionality at 1762482327066
     secret: process.env.JWT_SECRET || 'your-super-secret-jwt-key-here',
     expiresIn: process.env.JWT_EXPIRES_IN || '24h',
   },
