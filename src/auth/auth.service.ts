@@ -7,6 +7,7 @@ import { User, UserDocument } from '../users/user.schema';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import { ResetPasswordDto } from './dto/reset-password.dto';
 import * as crypto from 'crypto';
 
 @Injectable()
@@ -89,6 +90,21 @@ export class AuthService {
     user.resetPasswordExpires = new Date(Date.now() + 60 * 60 * 1000);
     await user.save();
     return { message: 'If the email exists, a reset link will be sent' };
+  }
+
+  async resetPassword(dto: ResetPasswordDto): Promise<{ message: string }> {
+    const user = await this.userModel.findOne({
+      resetPasswordToken: dto.token,
+      resetPasswordExpires: { $gt: new Date() },
+    });
+    if (!user) {
+      throw new UnauthorizedException('Invalid or expired reset token');
+    }
+    user.password = await bcrypt.hash(dto.password, 10);
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+    return { message: 'Password reset successfully' };
   }
 
   async changePassword(userId: string, dto: ChangePasswordDto): Promise<{ message: string }> {
