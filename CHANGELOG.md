@@ -10,3 +10,4 @@ All notable changes to this project will be documented in this file.
 - MongoDB connection and ConfigModule
 - User schema and Mongoose model
 - JWT strategy and Passport integration
+- User registration endpoint with validation
