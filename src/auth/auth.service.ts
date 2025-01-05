@@ -10,6 +10,8 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import * as crypto from 'crypto';
 
+const VERIFICATION_EXPIRY_MS = 24 * 60 * 60 * 1000;
+
 @Injectable()
 export class AuthService {
   private readonly refreshTokenBlacklist = new Set<string>();
@@ -90,6 +92,31 @@ export class AuthService {
     user.resetPasswordExpires = new Date(Date.now() + 60 * 60 * 1000);
     await user.save();
     return { message: 'If the email exists, a reset link will be sent' };
+  }
+
+  async verifyEmail(token: string): Promise<{ message: string }> {
+    const user = await this.userModel.findOne({ emailVerificationToken: token });
+    if (!user) {
+      throw new UnauthorizedException('Invalid verification token');
+    }
+    user.isEmailVerified = true;
+    user.emailVerificationToken = undefined;
+    await user.save();
+    return { message: 'Email verified successfully' };
+  }
+
+  async resendVerificationEmail(email: string): Promise<{ message: string }> {
+    const user = await this.userModel.findOne({ email });
+    if (!user) {
+      return { message: 'If the email exists, a verification link will be sent' };
+    }
+    if (user.isEmailVerified) {
+      return { message: 'Email is already verified' };
+    }
+    const token = crypto.randomBytes(32).toString('hex');
+    user.emailVerificationToken = token;
+    await user.save();
+    return { message: 'If the email exists, a verification link will be sent' };
   }
 
   async resetPassword(dto: ResetPasswordDto): Promise<{ message: string }> {
