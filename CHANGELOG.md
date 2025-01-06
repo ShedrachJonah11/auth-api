@@ -11,3 +11,4 @@ All notable changes to this project will be documented in this file.
 - User schema and Mongoose model
 - JWT strategy and Passport integration
 - User registration endpoint with validation
+- Login endpoint with bcrypt verification
