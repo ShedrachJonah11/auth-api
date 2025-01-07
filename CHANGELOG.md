@@ -12,3 +12,4 @@ All notable changes to this project will be documented in this file.
 - JWT strategy and Passport integration
 - User registration endpoint with validation
 - Login endpoint with bcrypt verification
+- Refresh token endpoint and rotation
