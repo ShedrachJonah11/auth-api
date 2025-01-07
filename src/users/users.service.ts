@@ -40,4 +40,16 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
   }
+
+  async assignRole(userId: string, role: string): Promise<User> {
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      { role },
+      { new: true },
+    ).select('-password').exec();
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
 }
