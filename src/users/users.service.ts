@@ -8,8 +8,20 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
-  async findAll(): Promise<User[]> {
-    return this.userModel.find().select('-password').exec();
+  async findAll(options?: { page?: number; limit?: number }): Promise<{ users: User[]; total: number; page: number; totalPages: number }> {
+    const page = Math.max(1, options?.page ?? 1);
+    const limit = Math.min(100, Math.max(1, options?.limit ?? 20));
+    const skip = (page - 1) * limit;
+    const [users, total] = await Promise.all([
+      this.userModel.find().select('-password').skip(skip).limit(limit).sort({ createdAt: -1 }).exec(),
+      this.userModel.countDocuments().exec(),
+    ]);
+    return {
+      users,
+      total,
+      page,
+      totalPages: Math.ceil(total / limit),
+    };
   }
 
   async findOne(id: string): Promise<User> {

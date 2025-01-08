@@ -3,9 +3,11 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagg
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AssignRoleDto } from '../auth/dto/assign-role.dto';
+import { PaginationDto } from '../common/dto/pagination.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { Query } from '@nestjs/common';
 
 @ApiTags('Users')
 @Controller('users')
@@ -15,14 +17,18 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Get all users' })
+  @ApiOperation({ summary: 'Get all users with pagination' })
   @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
-  async findAll() {
-    const users = await this.usersService.findAll();
+  async findAll(@Query() pagination: PaginationDto) {
+    const result = await this.usersService.findAll({
+      page: pagination.page,
+      limit: pagination.limit,
+    });
     return {
       success: true,
       message: 'Users retrieved successfully',
-      data: users,
+      data: result.users,
+      meta: { total: result.total, page: result.page, totalPages: result.totalPages },
     };
   }
 
