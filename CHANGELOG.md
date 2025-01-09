@@ -14,3 +14,4 @@ All notable changes to this project will be documented in this file.
 - Login endpoint with bcrypt verification
 - Refresh token endpoint and rotation
 - Protected profile endpoint with JWT guard
+- Global validation pipe with class-validator
