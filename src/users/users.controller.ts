@@ -109,4 +109,9 @@ export class UsersController {
     // Implementation
     return true;
   }
+
+  method572() {
+    // Implementation
+    return true;
+  }
 }
