@@ -2,11 +2,16 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from './user.schema';
+import { UserPreferences, UserPreferencesDocument } from './schemas/user-preferences.schema';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(UserPreferences.name) private preferencesModel: Model<UserPreferencesDocument>,
+  ) {}
 
   async findAll(options?: { page?: number; limit?: number }): Promise<{ users: User[]; total: number; page: number; totalPages: number }> {
     const page = Math.max(1, options?.page ?? 1);
@@ -63,5 +68,22 @@ export class UsersService {
       throw new NotFoundException('User not found');
     }
     return user;
+  }
+
+  async getPreferences(userId: string): Promise<UserPreferencesDocument> {
+    let prefs = await this.preferencesModel.findOne({ userId }).exec();
+    if (!prefs) {
+      prefs = await this.preferencesModel.create({ userId });
+    }
+    return prefs;
+  }
+
+  async updatePreferences(userId: string, dto: UpdatePreferencesDto): Promise<UserPreferencesDocument> {
+    const prefs = await this.preferencesModel.findOneAndUpdate(
+      { userId },
+      { $set: dto },
+      { new: true, upsert: true },
+    ).exec();
+    return prefs!;
   }
 }

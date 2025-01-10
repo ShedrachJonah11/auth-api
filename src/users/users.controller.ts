@@ -7,6 +7,8 @@ import { PaginationDto } from '../common/dto/pagination.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 import { Query } from '@nestjs/common';
 
 @ApiTags('Users')
@@ -15,6 +17,22 @@ import { Query } from '@nestjs/common';
 @ApiBearerAuth()
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get('me/preferences')
+  @ApiOperation({ summary: 'Get current user preferences' })
+  @ApiResponse({ status: 200, description: 'Preferences retrieved successfully' })
+  async getMyPreferences(@CurrentUser() user: { sub: string }) {
+    const prefs = await this.usersService.getPreferences(user.sub);
+    return { success: true, data: prefs };
+  }
+
+  @Patch('me/preferences')
+  @ApiOperation({ summary: 'Update current user preferences' })
+  @ApiResponse({ status: 200, description: 'Preferences updated successfully' })
+  async updateMyPreferences(@CurrentUser() user: { sub: string }, @Body() dto: UpdatePreferencesDto) {
+    const prefs = await this.usersService.updatePreferences(user.sub, dto);
+    return { success: true, message: 'Preferences updated', data: prefs };
+  }
 
   @Get()
   @ApiOperation({ summary: 'Get all users with pagination' })
