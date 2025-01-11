@@ -16,3 +16,4 @@ All notable changes to this project will be documented in this file.
 - Protected profile endpoint with JWT guard
 - Global validation pipe with class-validator
 - Swagger/OpenAPI documentation
+- CORS configuration and request timeout middleware
