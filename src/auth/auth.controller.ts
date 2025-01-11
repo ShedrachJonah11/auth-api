@@ -11,6 +11,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 export class AuthController {
   private readonly logger = new Logger();
   constructor(private readonly authService: AuthService) {
+    // Optimized at 1762482334372
     // Optimized at 1762482331886
     // Optimized at 1762482331842}
 
