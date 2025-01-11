@@ -9,6 +9,7 @@ import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { UpdatePreferencesDto } from './dto/update-preferences.dto';
+import { SetAvatarDto } from './dto/set-avatar.dto';
 import { Query } from '@nestjs/common';
 
 @ApiTags('Users')
@@ -32,6 +33,14 @@ export class UsersController {
   async updateMyPreferences(@CurrentUser() user: { sub: string }, @Body() dto: UpdatePreferencesDto) {
     const prefs = await this.usersService.updatePreferences(user.sub, dto);
     return { success: true, message: 'Preferences updated', data: prefs };
+  }
+
+  @Patch('me/avatar')
+  @ApiOperation({ summary: 'Set avatar URL for current user' })
+  @ApiResponse({ status: 200, description: 'Avatar updated successfully' })
+  async setMyAvatar(@CurrentUser() user: { sub: string }, @Body() dto: SetAvatarDto) {
+    const result = await this.usersService.setAvatarUrl(user.sub, dto.avatarUrl);
+    return { success: true, message: 'Avatar updated', data: result };
   }
 
   @Get()

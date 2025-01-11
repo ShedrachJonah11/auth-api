@@ -86,4 +86,16 @@ export class UsersService {
     ).exec();
     return prefs!;
   }
+
+  async setAvatarUrl(userId: string, avatarUrl: string): Promise<{ avatar: string }> {
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      { avatar: avatarUrl },
+      { new: true },
+    ).select('avatar').exec();
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return { avatar: (user as any).avatar };
+  }
 }
