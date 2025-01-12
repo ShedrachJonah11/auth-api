@@ -17,3 +17,4 @@ All notable changes to this project will be documented in this file.
 - Global validation pipe with class-validator
 - Swagger/OpenAPI documentation
 - CORS configuration and request timeout middleware
+- Environment variables template (env.example)
