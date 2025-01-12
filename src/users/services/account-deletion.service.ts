@@ -1,13 +1,38 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import * as bcrypt from 'bcryptjs';
 import { User, UserDocument } from '../user.schema';
 import { createWriteStream } from 'fs';
 import { join } from 'path';
 
+const GRACE_DAYS = parseInt(process.env.ACCOUNT_DELETION_GRACE_DAYS || '30', 10);
+
 @Injectable()
 export class AccountDeletionService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+
+  async requestAccountDeletion(userId: string): Promise<{ message: string; scheduledAt: Date }> {
+    const scheduledAt = new Date(Date.now() + GRACE_DAYS * 24 * 60 * 60 * 1000);
+    await this.userModel.updateOne(
+      { _id: userId },
+      { $set: { deletionScheduledAt: scheduledAt } },
+    );
+    return { message: 'Account deletion scheduled', scheduledAt };
+  }
+
+  async confirmAccountDeletion(userId: string, password: string): Promise<{ message: string }> {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new UnauthorizedException('Invalid password');
+    }
+    await this.deleteAccount(userId);
+    return { message: 'Account deleted successfully' };
+  }
 
   async exportUserData(userId: string): Promise<string> {
     const user = await this.userModel.findById(userId);

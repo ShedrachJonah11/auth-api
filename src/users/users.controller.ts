@@ -10,6 +10,8 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { UpdatePreferencesDto } from './dto/update-preferences.dto';
 import { SetAvatarDto } from './dto/set-avatar.dto';
+import { ConfirmDeletionDto } from './dto/confirm-deletion.dto';
+import { AccountDeletionService } from './services/account-deletion.service';
 import { Query } from '@nestjs/common';
 
 @ApiTags('Users')
@@ -17,7 +19,10 @@ import { Query } from '@nestjs/common';
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly accountDeletionService: AccountDeletionService,
+  ) {}
 
   @Get('me/preferences')
   @ApiOperation({ summary: 'Get current user preferences' })
@@ -41,6 +46,23 @@ export class UsersController {
   async setMyAvatar(@CurrentUser() user: { sub: string }, @Body() dto: SetAvatarDto) {
     const result = await this.usersService.setAvatarUrl(user.sub, dto.avatarUrl);
     return { success: true, message: 'Avatar updated', data: result };
+  }
+
+  @Post('me/request-deletion')
+  @ApiOperation({ summary: 'Request account deletion (grace period)' })
+  @ApiResponse({ status: 201, description: 'Deletion scheduled' })
+  async requestDeletion(@CurrentUser() user: { sub: string }) {
+    const result = await this.accountDeletionService.requestAccountDeletion(user.sub);
+    return { success: true, ...result };
+  }
+
+  @Post('me/confirm-deletion')
+  @ApiOperation({ summary: 'Confirm account deletion with password' })
+  @ApiResponse({ status: 200, description: 'Account deleted' })
+  @ApiResponse({ status: 401, description: 'Invalid password' })
+  async confirmDeletion(@CurrentUser() user: { sub: string }, @Body() dto: ConfirmDeletionDto) {
+    const result = await this.accountDeletionService.confirmAccountDeletion(user.sub, dto.password);
+    return { success: true, ...result };
   }
 
   @Get()

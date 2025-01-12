@@ -54,6 +54,9 @@ export class User {
   backupCodes: string[];
 
   @Prop()
+  deletionScheduledAt?: Date;
+
+  @Prop()
   createdAt: Date;
 
   @Prop()
