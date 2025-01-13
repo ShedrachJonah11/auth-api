@@ -1,1 +1,1 @@
-feat: create auth module with passport strategy
+feat: add bcrypt for password hashing
