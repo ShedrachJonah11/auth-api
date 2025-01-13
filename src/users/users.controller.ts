@@ -65,6 +65,14 @@ export class UsersController {
     return { success: true, ...result };
   }
 
+  @Get('me/export')
+  @ApiOperation({ summary: 'Export my data (GDPR)' })
+  @ApiResponse({ status: 200, description: 'Export file path or data' })
+  async exportMyData(@CurrentUser() user: { sub: string }) {
+    const filepath = await this.accountDeletionService.exportUserData(user.sub);
+    return { success: true, message: 'Data exported', data: { filepath } };
+  }
+
   @Get()
   @ApiOperation({ summary: 'Get all users with pagination' })
   @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
