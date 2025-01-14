@@ -1,1 +1,1 @@
-feat: add bcrypt for password hashing
+feat: setup JWT strategy
