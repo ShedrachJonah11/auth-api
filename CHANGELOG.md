@@ -19,3 +19,4 @@ All notable changes to this project will be documented in this file.
 - CORS configuration and request timeout middleware
 - Environment variables template (env.example)
 - Health check module and /health endpoint
+- Global exception filter for consistent errors
