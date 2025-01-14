@@ -6,6 +6,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { OAuthController } from './controllers/oauth.controller';
 import { AuthService } from './auth.service';
+import { TwoFactorService } from './services/two-factor.service';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { LocalStrategy } from './strategies/local.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
@@ -28,7 +29,7 @@ import { User, UserSchema } from '../users/user.schema';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   controllers: [AuthController, OAuthController],
-  providers: [AuthService, JwtStrategy, LocalStrategy, GoogleStrategy, GitHubStrategy],
+  providers: [AuthService, TwoFactorService, JwtStrategy, LocalStrategy, GoogleStrategy, GitHubStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

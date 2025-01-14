@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { User, UserDocument } from '../users/user.schema';
+import { TwoFactorService } from './services/two-factor.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -19,6 +20,7 @@ export class AuthService {
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private jwtService: JwtService,
+    private twoFactorService: TwoFactorService,
   ) {}
 
   async register(registerDto: RegisterDto) {
@@ -132,6 +134,43 @@ export class AuthService {
     user.resetPasswordExpires = undefined;
     await user.save();
     return { message: 'Password reset successfully' };
+  }
+
+  async generate2FASecret(userId: string): Promise<{ secret: string; qrCodeUrl: string }> {
+    const user = await this.userModel.findById(userId);
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    const { secret, qrCodeUrl } = this.twoFactorService.generateSecret(user.email);
+    await this.userModel.updateOne(
+      { _id: userId },
+      { $set: { twoFactorSecret: secret } },
+    );
+    return { secret, qrCodeUrl };
+  }
+
+  async enable2FA(userId: string, token: string): Promise<{ message: string }> {
+    const user = await this.userModel.findById(userId);
+    if (!user || !user.twoFactorSecret) {
+      throw new UnauthorizedException('Generate a secret first via POST /auth/2fa/setup');
+    }
+    const valid = this.twoFactorService.verifyToken(user.twoFactorSecret, token);
+    if (!valid) {
+      throw new UnauthorizedException('Invalid TOTP token');
+    }
+    await this.userModel.updateOne(
+      { _id: userId },
+      { $set: { isTwoFactorEnabled: true } },
+    );
+    return { message: '2FA enabled successfully' };
+  }
+
+  async disable2FA(userId: string): Promise<{ message: string }> {
+    await this.userModel.updateOne(
+      { _id: userId },
+      { $unset: { twoFactorSecret: 1 }, $set: { isTwoFactorEnabled: false } },
+    );
+    return { message: '2FA disabled successfully' };
   }
 
   async changePassword(userId: string, dto: ChangePasswordDto): Promise<{ message: string }> {

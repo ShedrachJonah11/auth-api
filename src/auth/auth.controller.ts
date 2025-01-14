@@ -9,6 +9,7 @@ import { ForgotPasswordDto } from './dto/forgot-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { ResendVerificationDto } from './dto/resend-verification.dto';
+import { Enable2FADto } from './dto/enable-2fa.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @ApiTags('Authentication')
@@ -109,5 +110,33 @@ export class AuthController {
       message: 'Profile retrieved successfully',
       data: req.user,
     };
+  }
+
+  @Post('2fa/setup')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Generate 2FA secret and QR URL' })
+  @ApiResponse({ status: 200, description: 'Secret generated' })
+  async setup2FA(@Request() req) {
+    return this.authService.generate2FASecret(req.user.sub);
+  }
+
+  @Post('2fa/enable')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Enable 2FA with TOTP token' })
+  @ApiResponse({ status: 200, description: '2FA enabled' })
+  @ApiResponse({ status: 401, description: 'Invalid token' })
+  async enable2FA(@Request() req, @Body() dto: Enable2FADto) {
+    return this.authService.enable2FA(req.user.sub, dto.token);
+  }
+
+  @Post('2fa/disable')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Disable 2FA' })
+  @ApiResponse({ status: 200, description: '2FA disabled' })
+  async disable2FA(@Request() req) {
+    return this.authService.disable2FA(req.user.sub);
   }
 }
