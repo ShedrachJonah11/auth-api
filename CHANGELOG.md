@@ -20,3 +20,4 @@ All notable changes to this project will be documented in this file.
 - Environment variables template (env.example)
 - Health check module and /health endpoint
 - Global exception filter for consistent errors
+- Business exception class for domain errors
