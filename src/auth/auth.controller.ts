@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, Get, Request, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, Delete, Request, Param, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
@@ -138,5 +138,25 @@ export class AuthController {
   @ApiResponse({ status: 200, description: '2FA disabled' })
   async disable2FA(@Request() req) {
     return this.authService.disable2FA(req.user.sub);
+  }
+
+  @Get('sessions')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'List my active sessions' })
+  @ApiResponse({ status: 200, description: 'Sessions list' })
+  async getMySessions(@Request() req) {
+    const sessions = await this.authService.getUserSessions(req.user.sub);
+    return { success: true, data: sessions };
+  }
+
+  @Delete('sessions/:sessionId')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Revoke a session' })
+  @ApiResponse({ status: 200, description: 'Session revoked' })
+  async revokeSession(@Request() req, @Param('sessionId') sessionId: string) {
+    await this.authService.revokeSession(req.user.sub, sessionId);
+    return { success: true, message: 'Session revoked' };
   }
 }

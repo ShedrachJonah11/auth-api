@@ -5,6 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { User, UserDocument } from '../users/user.schema';
 import { TwoFactorService } from './services/two-factor.service';
+import { SessionService } from './services/session.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
@@ -21,6 +22,7 @@ export class AuthService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private jwtService: JwtService,
     private twoFactorService: TwoFactorService,
+    private sessionService: SessionService,
   ) {}
 
   async register(registerDto: RegisterDto) {
@@ -171,6 +173,19 @@ export class AuthService {
       { $unset: { twoFactorSecret: 1 }, $set: { isTwoFactorEnabled: false } },
     );
     return { message: '2FA disabled successfully' };
+  }
+
+  async getUserSessions(userId: string) {
+    return this.sessionService.findUserSessions(userId);
+  }
+
+  async revokeSession(userId: string, sessionId: string): Promise<void> {
+    const sessions = await this.sessionService.findUserSessions(userId);
+    const owns = sessions.some((s) => s.sessionId === sessionId);
+    if (!owns) {
+      throw new UnauthorizedException('Session not found');
+    }
+    await this.sessionService.revokeSession(sessionId);
   }
 
   async changePassword(userId: string, dto: ChangePasswordDto): Promise<{ message: string }> {

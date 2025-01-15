@@ -12,6 +12,8 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { GoogleStrategy } from './strategies/google.strategy';
 import { GitHubStrategy } from './strategies/github.strategy';
 import { User, UserSchema } from '../users/user.schema';
+import { Session, SessionSchema } from './schemas/session.schema';
+import { SessionService } from './services/session.service';
 
 @Module({
   imports: [
@@ -26,10 +28,13 @@ import { User, UserSchema } from '../users/user.schema';
       }),
       inject: [ConfigService],
     }),
-    MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: Session.name, schema: SessionSchema },
+    ]),
   ],
   controllers: [AuthController, OAuthController],
-  providers: [AuthService, TwoFactorService, JwtStrategy, LocalStrategy, GoogleStrategy, GitHubStrategy],
+  providers: [AuthService, TwoFactorService, SessionService, JwtStrategy, LocalStrategy, GoogleStrategy, GitHubStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}
