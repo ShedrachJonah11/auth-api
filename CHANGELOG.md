@@ -21,3 +21,4 @@ All notable changes to this project will be documented in this file.
 - Health check module and /health endpoint
 - Global exception filter for consistent errors
 - Business exception class for domain errors
+- Password strength utility and validation
