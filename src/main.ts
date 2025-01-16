@@ -1,14 +1,23 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { randomUUID } from 'crypto';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
+  // Request ID propagation
+  app.use((req: any, res, next) => {
+    const requestId = (req.headers['x-request-id'] as string) || randomUUID();
+    req.requestId = requestId;
+    res.setHeader('X-Request-ID', requestId);
+    next();
+  });
+
   // Enable CORS
   app.enableCors();
-  
+
   // Set request timeout (30 seconds default)
   const timeout = parseInt(process.env.REQUEST_TIMEOUT || '30000', 10);
   app.use((req, res, next) => {
