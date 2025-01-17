@@ -22,3 +22,4 @@ All notable changes to this project will be documented in this file.
 - Global exception filter for consistent errors
 - Business exception class for domain errors
 - Password strength utility and validation
+- IsStrongPassword custom decorator for DTOs
