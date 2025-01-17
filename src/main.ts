@@ -15,6 +15,14 @@ async function bootstrap() {
     next();
   });
 
+  // Correlation ID propagation
+  app.use((req: any, res, next) => {
+    const correlationId = (req.headers['x-correlation-id'] as string) || randomUUID();
+    req.correlationId = correlationId;
+    res.setHeader('X-Correlation-ID', correlationId);
+    next();
+  });
+
   // Enable CORS
   app.enableCors();
 
