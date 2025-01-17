@@ -1,1 +1,1 @@
-test: registration and login functionality
+fix: user validation logic bugs
