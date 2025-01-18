@@ -23,3 +23,4 @@ All notable changes to this project will be documented in this file.
 - Business exception class for domain errors
 - Password strength utility and validation
 - IsStrongPassword custom decorator for DTOs
+- Enable 2FA DTO and TOTP token validation
