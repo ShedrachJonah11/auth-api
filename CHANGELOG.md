@@ -24,3 +24,4 @@ All notable changes to this project will be documented in this file.
 - Password strength utility and validation
 - IsStrongPassword custom decorator for DTOs
 - Enable 2FA DTO and TOTP token validation
+- Two-factor authentication service (TOTP)
