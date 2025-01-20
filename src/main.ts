@@ -44,16 +44,18 @@ async function bootstrap() {
     transform: true,
   }));
 
-  // Swagger configuration
-  const config = new DocumentBuilder()
-    .setTitle('Auth API')
-    .setDescription('A comprehensive authentication API built with NestJS')
-    .setVersion('1.0')
-    .addBearerAuth()
-    .build();
-  
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  // Swagger configuration (optional via env)
+  const swaggerEnabled = process.env.SWAGGER_ENABLED !== 'false';
+  if (swaggerEnabled) {
+    const config = new DocumentBuilder()
+      .setTitle('Auth API')
+      .setDescription('A comprehensive authentication API built with NestJS')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .build();
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api', app, document);
+  }
 
   await app.listen(process.env.PORT ?? 3000);
   console.log(`🚀 Application is running on: http://localhost:${process.env.PORT ?? 3000}`);
