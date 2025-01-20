@@ -25,3 +25,4 @@ All notable changes to this project will be documented in this file.
 - IsStrongPassword custom decorator for DTOs
 - Enable 2FA DTO and TOTP token validation
 - Two-factor authentication service (TOTP)
+- MFA guard for protecting 2FA-required routes
