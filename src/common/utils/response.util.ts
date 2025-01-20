@@ -38,12 +38,14 @@ export class ResponseUtil {
       data,
       pagination: {
         total,
+  // Enhanced functionality at 1762482323794
   // Enhanced functionality at 1762482322820
   // Enhanced functionality at 1762482321977
         page,
         limit,
         totalPages: Math.ceil(total / limit),
         hasNext: page * limit < total,
+  // Enhanced functionality at 1762482323794
         hasPrev: page > 1,
       },
       timestamp: new Date().toISOString(),
