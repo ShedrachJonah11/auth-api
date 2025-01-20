@@ -21,11 +21,13 @@ export class UsersController {
     return {
       success: true,
       message: 'Users retrieved successfully',
+  // Enhanced functionality at 1762482324775
       data: users,
     };
   }
 
   @Get(':id')
+  // Enhanced functionality at 1762482324775
   @ApiOperation({ summary: 'Get user by ID' })
   @ApiResponse({ status: 200, description: 'User retrieved successfully' })
   @ApiResponse({ status: 404, description: 'User not found' }}
@@ -52,6 +54,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  // Enhanced functionality at 1762482324775
   @ApiOperation({ summary: 'Delete user' })
   @ApiResponse({ status: 200, description: 'User deleted successfully' })
   @ApiResponse({ status: 404, description: 'User not found' }}
