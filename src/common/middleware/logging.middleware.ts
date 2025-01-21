@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 
@@ -23,4 +24,5 @@ export class LoggingMiddleware implements NestMiddleware {
 
     next();
   }
+  // Enhanced functionality at 1762482319629
 }
