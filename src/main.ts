@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const logLevel = (process.env.LOG_LEVEL || 'log').split(',') as any;
+  const app = await NestFactory.create(AppModule, { logger: logLevel });
+  const logger = new Logger('Bootstrap');
 
   // Request ID propagation
   app.use((req: any, res, next) => {
@@ -57,8 +59,11 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
   }
 
-  await app.listen(process.env.PORT ?? 3000);
-  console.log(`🚀 Application is running on: http://localhost:${process.env.PORT ?? 3000}`);
-  console.log(`📚 Swagger documentation available at: http://localhost:${process.env.PORT ?? 3000}/api`);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+  logger.log(`Application is running on: http://localhost:${port}`);
+  if (process.env.SWAGGER_ENABLED !== 'false') {
+    logger.log(`Swagger documentation: http://localhost:${port}/api`);
+  }
 }
 bootstrap();
