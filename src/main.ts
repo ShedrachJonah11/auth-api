@@ -25,6 +25,13 @@ async function bootstrap() {
     next();
   });
 
+  // Maintenance mode
+  if (process.env.MAINTENANCE_MODE === 'true') {
+    app.use((_req, res) => {
+      res.status(503).json({ statusCode: 503, message: 'Service temporarily unavailable' });
+    });
+  }
+
   // Global API prefix
   app.setGlobalPrefix('api');
 
