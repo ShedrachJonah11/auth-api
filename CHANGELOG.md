@@ -27,3 +27,4 @@ All notable changes to this project will be documented in this file.
 - Two-factor authentication service (TOTP)
 - MFA guard for protecting 2FA-required routes
 - Session schema and session management service
+- Login attempts tracking and persistence
