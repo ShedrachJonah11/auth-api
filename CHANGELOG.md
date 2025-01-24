@@ -2,57 +2,37 @@
 
 All notable changes to this project will be documented in this file.
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
 ## [Unreleased]
 
 ### Added
 
-- NestJS auth API project scaffold with TypeScript
-- MongoDB connection and ConfigModule
-- User schema and Mongoose model
-- JWT strategy and Passport integration
-- User registration endpoint with validation
-- Login endpoint with bcrypt verification
-- Refresh token endpoint and rotation
-- Protected profile endpoint with JWT guard
-- Global validation pipe with class-validator
-- Swagger/OpenAPI documentation
-- CORS configuration and request timeout middleware
-- Environment variables template (env.example)
-- Health check module and /health endpoint
-- Global exception filter for consistent errors
-- Business exception class for domain errors
-- Password strength utility and validation
-- IsStrongPassword custom decorator for DTOs
-- Enable 2FA DTO and TOTP token validation
-- Two-factor authentication service (TOTP)
-- MFA guard for protecting 2FA-required routes
-- Session schema and session management service
-- Login attempts tracking and persistence
-- Account lockout guard after failed attempts
-- Password history service to prevent reuse
-- API versioning decorator and version guard
-- Configuration module and config validation
-- Email template service for transactional emails
-- User-level rate limiting guard
-- IP whitelist schema and guard
-- Device schema and device tracking
-- Activity logging schema and service
-- Audit log schema and audit service
-- User preferences schema and update DTO
-- Avatar upload service and size validation
-- Account deletion service with grace period
-- File upload controller and service
-- Webhooks schema and webhook delivery service
-- API keys schema and API key service
-- In-memory cache service with TTL
-- Performance interceptor for response timing
-- Security middleware (helmet, etc.)
-- Register DTO with role and password validation
-- Login DTO and Refresh token DTO validation
-- Google OAuth strategy and callback
-- GitHub OAuth strategy and callback
-- JWT auth guard implementation
-- Auth controller with register, login, refresh, profile
-- Auth service with register, login, refreshToken, validateUser
-- Main bootstrap with Swagger, validation, CORS, and port config
-- CHANGELOG for January–February 2025
+- Logout endpoint with refresh token invalidation
+- Change password endpoint for authenticated users
+- Forgot password and reset password flow
+- Verify email and resend verification endpoints
+- Assign role endpoint (admin only)
+- Pagination on users list
+- User preferences get/update endpoints
+- Set avatar URL endpoint
+- Account deletion request and confirm with grace period
+- Export my data (GDPR) endpoint
+- 2FA setup, enable, and disable endpoints
+- List and revoke sessions endpoints
+- Request ID and correlation ID middleware
+- Global API prefix `/api`
+- Health module registration
+- Optional Swagger via SWAGGER_ENABLED
+- Configurable log level (LOG_LEVEL)
+- Maintenance mode (MAINTENANCE_MODE)
+- Typed configuration loading
+
+## [1.0.0] - 2025-01-01
+
+### Added
+
+- Initial NestJS auth API with JWT and refresh tokens
+- User registration and login
+- MongoDB and Mongoose integration
+- Swagger API documentation
