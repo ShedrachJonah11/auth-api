@@ -29,3 +29,4 @@ All notable changes to this project will be documented in this file.
 - Session schema and session management service
 - Login attempts tracking and persistence
 - Account lockout guard after failed attempts
+- Password history service to prevent reuse
