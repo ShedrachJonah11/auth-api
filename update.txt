@@ -1,1 +1,1 @@
-test: setup unit tests for user service
+test: create integration tests for user registration
