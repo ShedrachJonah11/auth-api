@@ -20,16 +20,32 @@ This is a comprehensive authentication API built with NestJS, MongoDB, and JWT a
 ### Authentication
 - `POST /auth/register` - Register a new user
 - `POST /auth/login` - Login user
+- `POST /auth/refresh` - Refresh access token
+- `POST /auth/logout` - Logout and invalidate refresh token
+- `POST /auth/change-password` - Change password (authenticated)
 - `POST /auth/forgot-password` - Request password reset
 - `POST /auth/reset-password` - Reset password with token
 - `POST /auth/verify-email` - Verify email address
 - `POST /auth/resend-verification` - Resend verification email
+- `GET /auth/profile` - Get current user profile
+- `POST /auth/2fa/setup` - Generate 2FA secret
+- `POST /auth/2fa/enable` - Enable 2FA with TOTP
+- `POST /auth/2fa/disable` - Disable 2FA
+- `GET /auth/sessions` - List my sessions
+- `DELETE /auth/sessions/:sessionId` - Revoke a session
 
 ### User Management
-- `GET /users` - Get all users (admin only)
+- `GET /users` - Get all users with pagination
+- `GET /users/me/preferences` - Get my preferences
+- `PATCH /users/me/preferences` - Update my preferences
+- `PATCH /users/me/avatar` - Set avatar URL
+- `POST /users/me/request-deletion` - Request account deletion
+- `POST /users/me/confirm-deletion` - Confirm deletion with password
+- `GET /users/me/export` - Export my data (GDPR)
 - `GET /users/:id` - Get user by ID
-- `PUT /users/:id` - Update user
-- `DELETE /users/:id` - Delete user
+- `PATCH /users/:id` - Update user
+- `PATCH /users/:id/role` - Assign role (admin only)
+- `DELETE /users/:id` - Delete user (admin only)
 
 ### Health Check
 - `GET /health` - Health check endpoint
