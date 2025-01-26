@@ -34,8 +34,8 @@ export class AuthService {
       throw new ConflictException('User with this email already exists');
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const rounds = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
+    const hashedPassword = await bcrypt.hash(password, Math.min(12, Math.max(10, rounds)));
 
     // Create user
     const user = new this.userModel({
@@ -131,7 +131,8 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('Invalid or expired reset token');
     }
-    user.password = await bcrypt.hash(dto.password, 10);
+    const rounds = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
+    user.password = await bcrypt.hash(dto.password, Math.min(12, Math.max(10, rounds)));
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
@@ -197,7 +198,8 @@ export class AuthService {
     if (!valid) {
       throw new UnauthorizedException('Current password is incorrect');
     }
-    user.password = await bcrypt.hash(dto.newPassword, 10);
+    const rounds = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
+    user.password = await bcrypt.hash(dto.newPassword, Math.min(12, Math.max(10, rounds)));
     await user.save();
     return { message: 'Password changed successfully' };
   }
