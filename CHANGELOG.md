@@ -31,3 +31,4 @@ All notable changes to this project will be documented in this file.
 - Account lockout guard after failed attempts
 - Password history service to prevent reuse
 - API versioning decorator and version guard
+- Configuration module and config validation
