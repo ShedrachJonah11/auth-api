@@ -1,1 +1,1 @@
-test: create integration tests for user registration
+fix: minor bugs and improve UX
