@@ -36,7 +36,12 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   // Enable CORS
-  app.enableCors();
+  const corsOrigin = process.env.CORS_ORIGIN || '*';
+  app.enableCors({
+    origin: corsOrigin === '*' ? true : corsOrigin.split(','),
+    credentials: true,
+    maxAge: parseInt(process.env.CORS_MAX_AGE || '86400', 10),
+  });
 
   // Set request timeout (30 seconds default)
   const timeout = parseInt(process.env.REQUEST_TIMEOUT || '30000', 10);
