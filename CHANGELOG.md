@@ -32,3 +32,4 @@ All notable changes to this project will be documented in this file.
 - Password history service to prevent reuse
 - API versioning decorator and version guard
 - Configuration module and config validation
+- Email template service for transactional emails
