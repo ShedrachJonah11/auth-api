@@ -33,3 +33,4 @@ All notable changes to this project will be documented in this file.
 - API versioning decorator and version guard
 - Configuration module and config validation
 - Email template service for transactional emails
+- User-level rate limiting guard
