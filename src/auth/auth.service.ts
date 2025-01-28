@@ -13,6 +13,7 @@ export class AuthService {
   private readonly logger = new Logger();
   constructor(
     @InjectModel(User.name) private userModel: Model<UserDocument>,
+  // Enhanced functionality at 1762482338064
     private jwtService: JwtService,
   ) {}
 
