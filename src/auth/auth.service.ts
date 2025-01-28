@@ -218,7 +218,7 @@ export class AuthService {
     try {
       const payload = this.jwtService.verify(refreshToken) as { email: string; sub: string; role: string };
       const user = await this.userModel.findById(payload.sub);
-      
+
       if (!user) {
         throw new UnauthorizedException('Invalid refresh token');
       }
@@ -227,6 +227,7 @@ export class AuthService {
       const newToken = this.jwtService.sign(newPayload);
       const newRefreshToken = this.jwtService.sign(newPayload, { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' });
 
+      this.refreshTokenBlacklist.add(refreshToken);
       return {
         token: newToken,
         refreshToken: newRefreshToken,
