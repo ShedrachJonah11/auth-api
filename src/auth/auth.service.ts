@@ -38,11 +38,12 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(password, Math.min(12, Math.max(10, rounds)));
 
     // Create user
+    const defaultRole = process.env.DEFAULT_USER_ROLE || 'user';
     const user = new this.userModel({
       email,
       password: hashedPassword,
       name,
-      role: role || 'user',
+      role: role || defaultRole,
     });
 
     await user.save();
