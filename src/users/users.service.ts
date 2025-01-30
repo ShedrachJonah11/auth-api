@@ -14,8 +14,10 @@ export class UsersService {
   ) {}
 
   async findAll(options?: { page?: number; limit?: number }): Promise<{ users: User[]; total: number; page: number; totalPages: number }> {
+    const defaultLimit = parseInt(process.env.PAGINATION_DEFAULT_LIMIT || '20', 10);
+    const maxLimit = parseInt(process.env.PAGINATION_MAX_LIMIT || '100', 10);
     const page = Math.max(1, options?.page ?? 1);
-    const limit = Math.min(100, Math.max(1, options?.limit ?? 20));
+    const limit = Math.min(maxLimit, Math.max(1, options?.limit ?? defaultLimit));
     const skip = (page - 1) * limit;
     const [users, total] = await Promise.all([
       this.userModel.find().select('-password').skip(skip).limit(limit).sort({ createdAt: -1 }).exec(),
