@@ -35,3 +35,4 @@ All notable changes to this project will be documented in this file.
 - Email template service for transactional emails
 - User-level rate limiting guard
 - IP whitelist schema and guard
+- Device schema and device tracking
