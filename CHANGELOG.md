@@ -36,3 +36,4 @@ All notable changes to this project will be documented in this file.
 - User-level rate limiting guard
 - IP whitelist schema and guard
 - Device schema and device tracking
+- Activity logging schema and service
