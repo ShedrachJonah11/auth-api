@@ -22,8 +22,9 @@ import { SessionService } from './services/session.service';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET') || configService.get<string>('jwt.secret') || 'your-secret-key',
-        signOptions: { 
+        signOptions: {
           expiresIn: configService.get<string>('JWT_EXPIRES_IN') || configService.get<string>('jwt.expiresIn') || '24h',
+          issuer: configService.get<string>('JWT_ISSUER') || 'auth-api',
         },
       }),
       inject: [ConfigService],
