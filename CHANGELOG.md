@@ -37,3 +37,4 @@ All notable changes to this project will be documented in this file.
 - IP whitelist schema and guard
 - Device schema and device tracking
 - Activity logging schema and service
+- Audit log schema and audit service
