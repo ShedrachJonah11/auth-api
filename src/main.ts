@@ -5,8 +5,10 @@ import { randomUUID } from 'crypto';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const logLevel = (process.env.LOG_LEVEL || 'log').split(',') as any;
-  const app = await NestFactory.create(AppModule, { logger: logLevel });
+  const logLevel = process.env.DEBUG_MODE === 'true'
+    ? ['error', 'warn', 'log', 'debug', 'verbose']
+    : (process.env.LOG_LEVEL || 'log').split(',');
+  const app = await NestFactory.create(AppModule, { logger: logLevel as any });
   const logger = new Logger('Bootstrap');
 
   // Request ID propagation
