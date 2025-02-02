@@ -11,9 +11,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { logger: logLevel as any });
   const logger = new Logger('Bootstrap');
 
-  // Request ID propagation
+  const requestIdHeader = (process.env.REQUEST_ID_HEADER || 'x-request-id').toLowerCase();
   app.use((req: any, res, next) => {
-    const requestId = (req.headers['x-request-id'] as string) || randomUUID();
+    const requestId = (req.headers[requestIdHeader] as string) || randomUUID();
     req.requestId = requestId;
     res.setHeader('X-Request-ID', requestId);
     next();
