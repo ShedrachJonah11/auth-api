@@ -26,6 +26,9 @@ export class AuthService {
   ) {}
 
   async register(registerDto: RegisterDto) {
+    if (process.env.ALLOW_REGISTRATION === 'false') {
+      throw new ConflictException('Registration is currently disabled');
+    }
     const { email, password, name, role } = registerDto;
 
     // Check if user already exists
