@@ -39,3 +39,4 @@ All notable changes to this project will be documented in this file.
 - Activity logging schema and service
 - Audit log schema and audit service
 - User preferences schema and update DTO
+- Avatar upload service and size validation
