@@ -40,3 +40,4 @@ All notable changes to this project will be documented in this file.
 - Audit log schema and audit service
 - User preferences schema and update DTO
 - Avatar upload service and size validation
+- Account deletion service with grace period
