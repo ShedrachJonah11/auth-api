@@ -41,3 +41,4 @@ All notable changes to this project will be documented in this file.
 - User preferences schema and update DTO
 - Avatar upload service and size validation
 - Account deletion service with grace period
+- File upload controller and service
