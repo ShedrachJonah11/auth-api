@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
+- Configurable request ID and correlation ID headers
+- CORS origin and max age configuration
+- Refresh token rotation on use
+- BCRYPT_ROUNDS, DEFAULT_USER_ROLE, PAGINATION_* env support
+- JWT_ISSUER and optional DEBUG_MODE
+- ALLOW_REGISTRATION flag to disable signups
+- Typed configuration with env and jwt.issuer
+
 - Logout endpoint with refresh token invalidation
 - Change password endpoint for authenticated users
 - Forgot password and reset password flow
