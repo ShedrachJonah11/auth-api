@@ -53,7 +53,7 @@ $ npm install
 
 ## Environment Variables
 
-Create a `.env` file in the root directory:
+Create a `.env` file in the root directory (see `env.example` for a full list). Minimum:
 
 ```env
 NODE_ENV=development
@@ -64,6 +64,8 @@ JWT_EXPIRES_IN=1h
 JWT_REFRESH_EXPIRES_IN=7d
 REQUEST_TIMEOUT=30000
 ```
+
+Optional: `SWAGGER_ENABLED`, `LOG_LEVEL`, `MAINTENANCE_MODE`, `BCRYPT_ROUNDS`, `ALLOW_REGISTRATION`, `CORS_ORIGIN`, and more (see `env.example`).
 
 ## Compile and run the project
 
