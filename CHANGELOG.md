@@ -42,3 +42,4 @@ All notable changes to this project will be documented in this file.
 - Avatar upload service and size validation
 - Account deletion service with grace period
 - File upload controller and service
+- Webhooks schema and webhook delivery service
