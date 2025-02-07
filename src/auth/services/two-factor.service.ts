@@ -5,9 +5,10 @@ import * as qrcode from 'qrcode';
 @Injectable()
 export class TwoFactorService {
   generateSecret(email: string): { secret: string; qrCodeUrl: string } {
+    const issuer = process.env.MFA_ISSUER_NAME || 'Auth API';
     const secret = speakeasy.generateSecret({
-      name: `Auth API (${email})`,
-      issuer: 'Auth API',
+      name: `${issuer} (${email})`,
+      issuer,
       length: 32,
     });
 
