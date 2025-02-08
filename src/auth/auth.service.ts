@@ -95,9 +95,10 @@ export class AuthService {
     if (!user) {
       return { message: 'If the email exists, a reset link will be sent' };
     }
+    const expiryMinutes = parseInt(process.env.PASSWORD_RESET_EXPIRY_MINUTES || '60', 10);
     const token = crypto.randomBytes(32).toString('hex');
     user.resetPasswordToken = token;
-    user.resetPasswordExpires = new Date(Date.now() + 60 * 60 * 1000);
+    user.resetPasswordExpires = new Date(Date.now() + expiryMinutes * 60 * 1000);
     await user.save();
     return { message: 'If the email exists, a reset link will be sent' };
   }
