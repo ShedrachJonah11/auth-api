@@ -1,7 +1,7 @@
 # Authentication API Documentation
 
 ## Overview
-This is a comprehensive authentication API built with NestJS, MongoDB, and JWT authentication.
+This is a comprehensive authentication API built with NestJS, MongoDB, and JWT authentication. All routes are under the `/api` prefix when the global prefix is enabled.
 
 ## Features
 - User registration and login
