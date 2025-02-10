@@ -46,3 +46,4 @@ All notable changes to this project will be documented in this file.
 - API keys schema and API key service
 - In-memory cache service with TTL
 - Performance interceptor for response timing
+- Security middleware (helmet, etc.)
