@@ -47,3 +47,4 @@ All notable changes to this project will be documented in this file.
 - In-memory cache service with TTL
 - Performance interceptor for response timing
 - Security middleware (helmet, etc.)
+- Register DTO with role and password validation
