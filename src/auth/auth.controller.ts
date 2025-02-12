@@ -14,6 +14,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @ApiTags('Authentication')
 @Controller('auth')
+@ApiResponse({ status: 401, description: 'Unauthorized' })
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
