@@ -48,3 +48,4 @@ All notable changes to this project will be documented in this file.
 - Performance interceptor for response timing
 - Security middleware (helmet, etc.)
 - Register DTO with role and password validation
+- Login DTO and Refresh token DTO validation
