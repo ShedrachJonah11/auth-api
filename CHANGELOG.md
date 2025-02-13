@@ -49,3 +49,4 @@ All notable changes to this project will be documented in this file.
 - Security middleware (helmet, etc.)
 - Register DTO with role and password validation
 - Login DTO and Refresh token DTO validation
+- Google OAuth strategy and callback
