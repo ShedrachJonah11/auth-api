@@ -15,6 +15,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - JWT_ISSUER and optional DEBUG_MODE
 - ALLOW_REGISTRATION flag to disable signups
 - Typed configuration with env and jwt.issuer
+- MFA_ISSUER_NAME and PASSWORD_RESET_EXPIRY_MINUTES
+- Production mode startup log and auth controller docs
 
 - Logout endpoint with refresh token invalidation
 - Change password endpoint for authenticated users
