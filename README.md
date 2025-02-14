@@ -105,7 +105,7 @@ $ npm run test:cov
 
 ## API Documentation
 
-Once the application is running, visit `http://localhost:3000/api` to view the Swagger documentation.
+Once the application is running, visit `http://localhost:3000/api` to view the Swagger documentation (when `SWAGGER_ENABLED` is not `false`).
 
 For detailed API documentation, see [API.md](./API.md).
 
