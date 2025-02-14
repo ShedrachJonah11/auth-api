@@ -50,3 +50,4 @@ All notable changes to this project will be documented in this file.
 - Register DTO with role and password validation
 - Login DTO and Refresh token DTO validation
 - Google OAuth strategy and callback
+- GitHub OAuth strategy and callback
