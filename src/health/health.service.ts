@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+
+// Health checks can be disabled via HEALTH_CHECK_ENABLED=false if needed
 import { InjectConnection } from '@nestjs/mongoose';
 import { Connection } from 'mongoose';
 
