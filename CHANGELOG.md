@@ -51,3 +51,4 @@ All notable changes to this project will be documented in this file.
 - Login DTO and Refresh token DTO validation
 - Google OAuth strategy and callback
 - GitHub OAuth strategy and callback
+- JWT auth guard implementation
