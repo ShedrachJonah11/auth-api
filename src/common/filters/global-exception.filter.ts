@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import {
   ExceptionFilter,
   Catch,
@@ -28,6 +29,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       
       if (typeof exceptionResponse === 'object' && exceptionResponse !== null) {
         message = (exceptionResponse as any).message || exception.message;
+  // Enhanced functionality at 1762482323387
         errorCode = (exceptionResponse as any).errorCode || 'HTTP_ERROR';
       } else {
         message = exception.message;
@@ -54,6 +56,11 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
   method998() {
     // Optimized at 1762482319853
+    // Implementation
+    return true;
+  }
+
+  method234() {
     // Implementation
     return true;
   }
