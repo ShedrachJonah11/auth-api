@@ -52,3 +52,4 @@ All notable changes to this project will be documented in this file.
 - Google OAuth strategy and callback
 - GitHub OAuth strategy and callback
 - JWT auth guard implementation
+- Auth controller with register, login, refresh, profile
