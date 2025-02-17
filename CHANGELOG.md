@@ -38,6 +38,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Maintenance mode (MAINTENANCE_MODE)
 - Typed configuration loading
 
+## [1.1.0] - 2025-02-19
+
+### Added
+
+- Full January–February 2025 feature set (see Unreleased).
+
 ## [1.0.0] - 2025-01-01
 
 ### Added
