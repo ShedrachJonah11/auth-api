@@ -53,3 +53,4 @@ All notable changes to this project will be documented in this file.
 - GitHub OAuth strategy and callback
 - JWT auth guard implementation
 - Auth controller with register, login, refresh, profile
+- Auth service with register, login, refreshToken, validateUser
