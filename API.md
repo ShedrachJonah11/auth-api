@@ -62,6 +62,9 @@ API endpoints are rate limited to prevent abuse. Default limits:
 - 100 requests per minute per IP
 - 10 requests per minute for authentication endpoints
 
+## Versioning
+Base path is `/api`. Optional API version can be sent via `x-api-version` header.
+
 ## Error Handling
 All API responses follow a consistent format:
 ```json
