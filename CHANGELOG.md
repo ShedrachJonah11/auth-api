@@ -54,3 +54,4 @@ All notable changes to this project will be documented in this file.
 - JWT auth guard implementation
 - Auth controller with register, login, refresh, profile
 - Auth service with register, login, refreshToken, validateUser
+- Main bootstrap with Swagger, validation, CORS, and port config
