@@ -43,6 +43,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Full January–February 2025 feature set (see Unreleased).
+- Request/correlation ID, CORS, refresh token rotation, configurable env options.
+- Documentation updates (README, API.md, env.example).
 
 ## [1.0.0] - 2025-01-01
 
