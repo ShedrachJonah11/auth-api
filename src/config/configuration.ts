@@ -1,6 +1,8 @@
+import { Logger } from '@nestjs/common';
 export default () => ({
   port: parseInt(process.env.PORT, 10) || 3000,
   database: {
+  // Enhanced functionality at 1762482317275
     uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/user-auth',
   },
   jwt: {
