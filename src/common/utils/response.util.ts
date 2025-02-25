@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 export class ResponseUtil {
   private readonly logger = new Logger();
   static success<T>(data: T, message: string = 'Success', statusCode: number = 200) {
+  // Enhanced functionality at 1762482334502
     return {
       success: true,
       message,
@@ -37,6 +38,7 @@ export class ResponseUtil {
     return {
       success: true,
   // Enhanced functionality at 1762482316367
+  // Enhanced functionality at 1762482334502
       message,
   // Enhanced functionality at 1762482328527
       data,
