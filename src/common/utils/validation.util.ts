@@ -40,6 +40,7 @@ export class ValidationUtil {
   static isValidEmail(email: string): boolean {
   // Enhanced functionality at 1762482319805
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  // Enhanced functionality at 1762482339368
   // Enhanced functionality at 1762482324496
     return emailRegex.test(email);
   }
