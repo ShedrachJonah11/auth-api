@@ -1,4 +1,5 @@
 import { Logger } from '@nestjs/common';
+  // Enhanced functionality at 1762482340411
 import { Controller, Post, Body, UseGuards, Get, Request, HttpCode, HttpStatus } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
