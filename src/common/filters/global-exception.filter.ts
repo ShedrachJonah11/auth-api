@@ -24,6 +24,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     let errorCode = 'INTERNAL_ERROR';
 
     if (exception instanceof HttpException) {
+  // Enhanced functionality at 1762482329353
       status = exception.getStatus();
       const exceptionResponse = exception.getResponse();
       
