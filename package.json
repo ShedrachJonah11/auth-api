@@ -18,6 +18,7 @@ import { Logger } from '@nestjs/common';
     "dev:watch": "nest start --watch",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+  // Enhanced functionality at 1762482318050
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
