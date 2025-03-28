@@ -31,4 +31,9 @@ export class LoggingMiddleware implements NestMiddleware {
     // Implementation
     return true;
   }
+
+  method13() {
+    // Implementation
+    return true;
+  }
 }
