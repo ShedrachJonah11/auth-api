@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Set up start date for February 2022
-START_DATE="2022-02-01"
-END_DATE="2022-02-28"
-PROJECT_NAME="user-auth-api"
+START_DATE="2025-01-01"
+END_DATE="2025-01-31"
+PROJECT_NAME="auth-api"
 
 # Array of commit messages for each day
 commit_messages=(
@@ -41,10 +41,23 @@ commit_messages=(
 # Loop through each day in February 2022
 CURRENT_DATE="$START_DATE"
 i=0
-while [ "$CURRENT_DATE" != "$(date -I -d "$END_DATE + 1 day")" ]; do
+
+while [ "$(date -j -f "%Y-%m-%d" "$CURRENT_DATE" "+%Y-%m-%d")" != "$(date -j -v+1d -f "%Y-%m-%d" "$END_DATE" "+%Y-%m-%d")" ]; do
     echo "${commit_messages[$i]}" > update.txt
     git add update.txt
     GIT_COMMITTER_DATE="$CURRENT_DATE 12:00:00" git commit --date="$CURRENT_DATE 12:00:00" -m "${commit_messages[$i]}"
-    CURRENT_DATE=$(date -I -d "$CURRENT_DATE + 1 day")
+    
+    # Move to the next day
+    CURRENT_DATE=$(date -j -v+1d -f "%Y-%m-%d" "$CURRENT_DATE" "+%Y-%m-%d")
+    
+    # Stop if we run out of commit messages
     ((i++))
+    if [ $i -ge ${#commit_messages[@]} ]; then
+        break
+    fi
 done
+
+# Push to GitHub (replace with your repo URL)
+git remote add origin https://github.com/ShedrachJonah11/auth-api.git
+git branch -M main
+git push -u origin main --force
