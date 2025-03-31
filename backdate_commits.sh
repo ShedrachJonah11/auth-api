@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set up start date for February 2022
-START_DATE="2025-02-01"
-END_DATE="2025-02-28"
+START_DATE="2024-12-01"
+END_DATE="2024-12-31"
 PROJECT_NAME="auth-api"
 
 # Array of commit messages for each day
