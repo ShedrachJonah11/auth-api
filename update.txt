@@ -1,1 +1,1 @@
-Fixed bugs in the authentication flow
+Initialized NestJS Note API project
