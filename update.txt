@@ -1,1 +1,1 @@
-Refactored authentication module
+Enhanced API security with JWT
