@@ -1,1 +1,1 @@
-Added URL shortening logic
+Implemented hash-based URL encoding
