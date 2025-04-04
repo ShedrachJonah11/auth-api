@@ -1,1 +1,1 @@
-Implemented Note schema and model
+Added Note creation endpoint
