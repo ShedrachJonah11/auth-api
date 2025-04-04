@@ -1,1 +1,1 @@
-Implemented hash-based URL encoding
+Created database schema for storing URLs
