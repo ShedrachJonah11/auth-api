@@ -1,1 +1,1 @@
-Added Note creation endpoint
+Implemented Note retrieval endpoints
