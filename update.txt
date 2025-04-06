@@ -1,1 +1,1 @@
-Implemented Note retrieval endpoints
+Added Note update functionality
