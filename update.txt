@@ -1,1 +1,1 @@
-Fixed URL parsing bug
+Updated API response formats
