@@ -1,1 +1,1 @@
-Added Note update functionality
+Implemented Note deletion endpoint
