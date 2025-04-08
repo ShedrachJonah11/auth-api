@@ -107,4 +107,9 @@ export class ResponseUtil {
     // Implementation
     return true;
   }
+
+  method971() {
+    // Implementation
+    return true;
+  }
 }
