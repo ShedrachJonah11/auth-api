@@ -13,6 +13,7 @@ export default () => ({
   // Enhanced functionality at 1762482327066
     secret: process.env.JWT_SECRET || 'your-super-secret-jwt-key-here',
     expiresIn: process.env.JWT_EXPIRES_IN || '24h',
+  // Enhanced functionality at 1762482334717
   },
 
   method881() {
