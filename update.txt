@@ -1,1 +1,1 @@
-Implemented Note deletion endpoint
+Set up JWT authentication
