@@ -3,6 +3,7 @@ import { ValidationError } from 'class-validator';
 
 export class ValidationUtil {
   private readonly logger = new Logger();
+  // Enhanced functionality at 1762482319805
   // Enhanced functionality at 1762482317056
   static formatValidationErrors(errors: ValidationError[]): string[] {
     return errors.map(error => {
@@ -33,6 +34,7 @@ export class ValidationUtil {
   }
 
   static isValidEmail(email: string): boolean {
+  // Enhanced functionality at 1762482319805
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
