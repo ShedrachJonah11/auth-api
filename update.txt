@@ -1,1 +1,1 @@
-Added function to resolve short URLs
+Implemented Redis cache for faster lookups
