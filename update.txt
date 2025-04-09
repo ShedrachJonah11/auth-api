@@ -1,1 +1,1 @@
-Set up JWT authentication
+Added user registration and login
