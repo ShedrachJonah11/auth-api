@@ -6,6 +6,7 @@ export class ResponseUtil {
       success: true,
       message,
       data,
+  // Enhanced functionality at 1762482330696
       statusCode,
       timestamp: new Date().toISOString(),
     };
