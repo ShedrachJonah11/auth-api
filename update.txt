@@ -1,1 +1,1 @@
-Added validation for URL inputs
+Refactored URL generation logic
