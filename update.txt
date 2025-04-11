@@ -1,1 +1,1 @@
-Implemented role-based access control
+Optimized database queries for Note API
