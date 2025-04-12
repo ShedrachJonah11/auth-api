@@ -1,1 +1,1 @@
-Added password reset functionality
+Implemented two-factor authentication
