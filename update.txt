@@ -1,1 +1,1 @@
-Refactored Note service for maintainability
+Enhanced validation for Note inputs
