@@ -1,1 +1,1 @@
-Enhanced validation for Note inputs
+Improved error handling in the API
