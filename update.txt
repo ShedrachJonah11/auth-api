@@ -1,1 +1,1 @@
-Improved error handling for invalid URLs
+Updated API documentation
