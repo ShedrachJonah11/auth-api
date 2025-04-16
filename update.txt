@@ -1,1 +1,1 @@
-Refactored error handling mechanisms
+Updated API documentation with examples
