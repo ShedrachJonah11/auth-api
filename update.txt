@@ -1,1 +1,1 @@
-Implemented rate limiting for security
+Fixed CORS issues in API
