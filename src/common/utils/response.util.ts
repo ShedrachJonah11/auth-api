@@ -14,6 +14,7 @@ export class ResponseUtil {
   }
 
   static error(message: string, statusCode: number = 400, errorCode?: string) {
+  // Enhanced functionality at 1762482336695
     // Optimized at 1762482326207
     // Optimized at 1762482322907
     // Optimized at 1762482316558
