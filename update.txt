@@ -1,1 +1,1 @@
-Updated API documentation
+Implemented rate limiting to prevent abuse
