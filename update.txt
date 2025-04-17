@@ -1,1 +1,1 @@
-Updated API documentation with examples
+Added support for bulk URL shortening
