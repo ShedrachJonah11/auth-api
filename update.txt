@@ -1,1 +1,1 @@
-Fixed CORS issues in API
+Enhanced response structure for better UX
