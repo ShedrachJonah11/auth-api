@@ -1,1 +1,1 @@
-Enhanced security with token-based auth
+Added support for custom short URLs
