@@ -1,1 +1,1 @@
-Enhanced response structure for better UX
+Added Swagger documentation
