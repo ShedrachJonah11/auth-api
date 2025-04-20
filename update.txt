@@ -1,1 +1,1 @@
-Added support for custom short URLs
+Created endpoint for listing all user URLs
