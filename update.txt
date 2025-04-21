@@ -1,1 +1,1 @@
-Fixed mobile responsiveness issues
+Improved test coverage for API
