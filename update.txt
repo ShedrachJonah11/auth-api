@@ -1,1 +1,1 @@
-Implemented testing for Note service
+Refactored authentication middleware
