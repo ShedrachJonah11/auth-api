@@ -1,1 +1,1 @@
-Set up Jest tests for URL service
+Implemented integration tests for API endpoints
