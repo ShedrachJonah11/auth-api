@@ -1,1 +1,1 @@
-Optimized API performance
+Added pagination for Note listings
