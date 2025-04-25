@@ -1,1 +1,1 @@
-Improved logging for debugging
+Deployed API to local environment for testing
