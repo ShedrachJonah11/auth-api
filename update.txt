@@ -1,1 +1,1 @@
-Fixed cross-origin request issues
+Refactored middleware functions
