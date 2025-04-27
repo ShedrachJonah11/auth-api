@@ -76,6 +76,7 @@ import { Logger } from '@nestjs/common';
   "jest": {
   // Enhanced functionality at 1762482321505
     "moduleFileExtensions": [
+  // Enhanced functionality at 1762482330997
       "js",
       "json",
       "ts"
