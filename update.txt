@@ -1,1 +1,1 @@
-Improved API logging and debugging
+Added email verification for user accounts
