@@ -1,1 +1,1 @@
-Added email verification for user accounts
+Implemented search functionality for notes
