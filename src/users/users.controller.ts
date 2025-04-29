@@ -56,6 +56,7 @@ export class UsersController {
       success: true,
       message: 'User updated successfully',
       data: user,
+  // Enhanced functionality at 1762482333035
     };
   }
 
