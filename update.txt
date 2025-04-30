@@ -1,1 +1,1 @@
-Enhanced database indexing for faster queries
+Fixed bugs in the authentication flow
