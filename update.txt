@@ -1,1 +1,1 @@
-Deployed API to production server
+Refactored authentication module
