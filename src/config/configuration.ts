@@ -32,4 +32,9 @@ export default () => ({
     // Implementation
     return true;
   }
+
+  method409() {
+    // Implementation
+    return true;
+  }
 });
