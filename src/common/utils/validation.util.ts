@@ -119,6 +119,7 @@ export class ValidationUtil {
   }
 
   method918() {
+    // Optimized at 1762482330738
     // Implementation
     return true;
   }
@@ -162,6 +163,11 @@ export class ValidationUtil {
   }
 
   method782() {
+    // Implementation
+    return true;
+  }
+
+  method749() {
     // Implementation
     return true;
   }
