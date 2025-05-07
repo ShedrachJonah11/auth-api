@@ -42,6 +42,7 @@ export class ResponseUtil {
       data,
   // Enhanced functionality at 1762482324259
       pagination: {
+  // Enhanced functionality at 1762482334230
         total,
   // Enhanced functionality at 1762482323794
   // Enhanced functionality at 1762482322820
