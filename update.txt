@@ -1,1 +1,1 @@
-Implemented route for generating short URLs
+Added function to resolve short URLs
