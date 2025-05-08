@@ -51,3 +51,4 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     response.status(status).json(errorResponse);
   }
 }
+  // Enhanced functionality at 1762482316318
