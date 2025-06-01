@@ -1,1 +1,1 @@
-Updated CI/CD pipeline configuration
+Initialize project with basic setup
