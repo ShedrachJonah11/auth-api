@@ -1,3 +1,0 @@
-Added email verification for user accounts with templates
-Additional changes and improvements
-Date: 2024-04-27 09:21:00

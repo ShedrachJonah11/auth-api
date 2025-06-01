@@ -1,3 +1,0 @@
-Initialized NestJS Note API project with basic structure and configuration
-Additional changes and improvements
-Date: 2024-04-01 12:58:00

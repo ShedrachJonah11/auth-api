@@ -1,3 +1,0 @@
-Fixed CORS issues in API and added proper security headers
-Additional changes and improvements
-Date: 2024-04-17 16:02:00

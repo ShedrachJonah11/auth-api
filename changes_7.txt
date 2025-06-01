@@ -1,3 +1,0 @@
-Set up JWT authentication with refresh token mechanism
-Additional changes and improvements
-Date: 2024-04-08 10:28:00

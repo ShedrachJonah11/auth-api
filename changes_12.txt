@@ -1,3 +1,0 @@
-Enhanced validation for Note inputs using class-validator
-Additional changes and improvements
-Date: 2024-04-13 12:14:00

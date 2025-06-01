@@ -1,3 +1,0 @@
-Set up MongoDB connection with Mongoose and environment variables
-Additional changes and improvements
-Date: 2024-04-02 11:55:00

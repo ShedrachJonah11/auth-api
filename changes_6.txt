@@ -1,3 +1,0 @@
-Implemented Note deletion endpoint with soft delete support
-Additional changes and improvements
-Date: 2024-04-07 12:31:00

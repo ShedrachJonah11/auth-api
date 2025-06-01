@@ -1,3 +1,0 @@
-Implemented Note retrieval endpoints with filtering and sorting
-Additional changes and improvements
-Date: 2024-04-05 15:37:00

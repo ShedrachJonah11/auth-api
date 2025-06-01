@@ -1,3 +1,0 @@
-Added pagination for Note listings with cursor-based pagination
-Additional changes and improvements
-Date: 2024-04-23 14:42:00
