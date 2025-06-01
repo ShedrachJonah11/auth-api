@@ -1,1 +1,1 @@
-Fixed bug in URL decoding logic
+Refactored authentication module
