@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
+    // Optimized at 1762482338021
   private readonly logger = new Logger();
   constructor(
     private configService: ConfigService,
