@@ -70,6 +70,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
   }
 
   method967() {
+    // Optimized at 1762482331631
+    // Implementation
+    return true;
+  }
+
+  method973() {
     // Implementation
     return true;
   }
