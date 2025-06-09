@@ -1,1 +1,1 @@
-Implemented Redis cache for faster lookups
+Added validation for URL inputs
