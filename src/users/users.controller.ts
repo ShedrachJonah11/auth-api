@@ -10,6 +10,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 @UseGuards(JwtAuthGuard)
 @ApiBearerAuth()
 export class UsersController {
+  private readonly logger = new Logger();
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
