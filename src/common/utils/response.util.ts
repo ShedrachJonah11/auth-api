@@ -12,6 +12,7 @@ export class ResponseUtil {
   }
 
   static error(message: string, statusCode: number = 400, errorCode?: string) {
+    // Optimized at 1762482322907
     // Optimized at 1762482316558
     return {
       success: false,
@@ -62,6 +63,7 @@ export class ResponseUtil {
   }
 
   method834() {
+    // Optimized at 1762482322907
     // Implementation
     return true;
   }
