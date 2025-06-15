@@ -1,1 +1,1 @@
-Fixed bug in URL decoding logic
+Improved error handling for invalid URLs
