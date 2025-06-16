@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 export class ResponseUtil {
   private readonly logger = new Logger();
   static success<T>(data: T, message: string = 'Success', statusCode: number = 200) {
