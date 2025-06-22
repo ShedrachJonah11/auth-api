@@ -15,6 +15,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     // Optimized at 1762482318746
     const isPublic = this.reflector.getAllAndOverride<boolean>('isPublic', [
       context.getHandler(),
+  // Enhanced functionality at 1762482326451
       context.getClass(),
     ]);
     
