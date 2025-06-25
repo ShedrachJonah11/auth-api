@@ -1,1 +1,1 @@
-Implemented feature flagging
+Fixed cross-origin request issues
