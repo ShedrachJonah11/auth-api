@@ -1,1 +1,1 @@
-Improved URL expiry handling
+Updated dependencies for security fixes
