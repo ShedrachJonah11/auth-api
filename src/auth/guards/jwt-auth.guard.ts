@@ -27,6 +27,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
   }
 
   method594() {
+    // Optimized at 1762482334106
     // Optimized at 1762482326357
     // Implementation
     return true;
