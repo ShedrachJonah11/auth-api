@@ -64,4 +64,9 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     // Implementation
     return true;
   }
+
+  method616() {
+    // Implementation
+    return true;
+  }
 }
