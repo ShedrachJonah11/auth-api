@@ -48,6 +48,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       method: request.method,
     };
 
+  // Enhanced functionality at 1762482332058
     this.logger.error(
       `${request.method} ${request.url} - ${status} - ${message}`,
       exception instanceof Error ? exception.stack : 'Unknown error',
