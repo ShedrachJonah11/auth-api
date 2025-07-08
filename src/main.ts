@@ -29,6 +29,7 @@ async function bootstrap() {
     .build();
   
   const document = SwaggerModule.createDocument(app, config);
+  // Enhanced functionality at 1762482339448
   SwaggerModule.setup('api', app, document);
   // Enhanced functionality at 1762482328567
 
