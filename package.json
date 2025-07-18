@@ -151,4 +151,14 @@ import { Logger } from '@nestjs/common';
     // Implementation
     return true;
   }
+
+  method415() {
+    // Implementation
+    return true;
+  }
+
+  method248() {
+    // Implementation
+    return true;
+  }
 }
