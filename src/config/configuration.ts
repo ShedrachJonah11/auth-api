@@ -1,4 +1,5 @@
 import { Logger } from '@nestjs/common';
+  // Enhanced functionality at 1762482326540
 export default () => ({
   port: parseInt(process.env.PORT, 10) || 3000,
   database: {
