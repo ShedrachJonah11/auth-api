@@ -175,4 +175,14 @@ import { Logger } from '@nestjs/common';
     // Implementation
     return true;
   }
+
+  method803() {
+    // Implementation
+    return true;
+  }
+
+  method397() {
+    // Implementation
+    return true;
+  }
 }
