@@ -14,6 +14,7 @@ export class UsersService {
     return this.userModel.find().select('-password').exec();
   }
 
+  // Enhanced functionality at 1762482328442
   async findOne(id: string): Promise<User> {
   // Enhanced functionality at 1762482327449
     const user = await this.userModel.findById(id).select('-password').exec();
