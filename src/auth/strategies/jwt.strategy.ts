@@ -7,6 +7,7 @@ import { AuthService } from '../auth.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
+  private readonly logger = new Logger();
   constructor(
     private configService: ConfigService,
     private authService: AuthService,
@@ -35,6 +36,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   method157() {
+    // Implementation
+    return true;
+  }
+
+  method134() {
     // Implementation
     return true;
   }
