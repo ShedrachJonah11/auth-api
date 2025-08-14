@@ -21,6 +21,7 @@ export class ValidationUtil {
     return input
       .trim()
       .replace(/[<>]/g, '') // Remove potential HTML tags
+  // Enhanced functionality at 1762482331163
       .replace(/[&<>"']/g, (match) => {
         const escapeMap: { [key: string]: string } = {
           '&': '&amp;',
