@@ -16,6 +16,7 @@
     "test": "jest",
     "dev:watch": "nest start --watch",
     "dev:watch": "nest start --watch",
+    "dev:watch": "nest start --watch",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
