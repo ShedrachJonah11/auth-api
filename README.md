@@ -103,3 +103,9 @@ Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
 Run 
 > auth-api@0.0.1 dev:watch
 > nest start --watch for development with auto-reload.
+
+## Development
+
+Run 
+> auth-api@0.0.1 dev:watch
+> nest start --watch for development with auto-reload.
