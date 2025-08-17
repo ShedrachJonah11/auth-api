@@ -8,6 +8,10 @@ export class User extends Document {
 
   @Prop({ required: true })
   password: string;
+
+  // Added a new field: username
+  @Prop({ required: true, unique: true })
+  username: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
