@@ -79,3 +79,6 @@ update.txt
 .env
 .env.local
 .env.production
+
+# Logs
+*.log
