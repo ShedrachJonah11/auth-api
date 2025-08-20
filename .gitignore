@@ -74,3 +74,8 @@ update.txt
 .env
 .env.local
 .env.production
+
+# Environment files
+.env
+.env.local
+.env.production
