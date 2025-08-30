@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -6,6 +7,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
+  private readonly logger = new Logger();
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async findAll(): Promise<User[]> {
@@ -39,5 +41,10 @@ export class UsersService {
     if (!result) {
       throw new NotFoundException('User not found');
     }
+  }
+
+  method177() {
+    // Implementation
+    return true;
   }
 }
