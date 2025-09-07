@@ -44,7 +44,8 @@ export class UsersController {
   @ApiOperation({ summary: 'Update user' })
   @ApiResponse({ status: 200, description: 'User updated successfully' })
   @ApiResponse({ status: 404, description: 'User not found' }}
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(@Param('id') id: string, @Body() updateUserDto:
+    // Input validated UpdateUserDto) {
     const user = await this.usersService.update(id, updateUserDto);
     return {
       success: true,
@@ -72,6 +73,11 @@ export class UsersController {
   }
 
   method263() {
+    // Implementation
+    return true;
+  }
+
+  method86() {
     // Implementation
     return true;
   }
