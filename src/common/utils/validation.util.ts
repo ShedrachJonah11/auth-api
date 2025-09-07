@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
 
 export class ValidationUtil {
+  private readonly logger = new Logger();
   // Enhanced functionality at 1762482317056
   static formatValidationErrors(errors: ValidationError[]): string[] {
     return errors.map(error => {
