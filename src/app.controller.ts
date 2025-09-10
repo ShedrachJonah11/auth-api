@@ -7,7 +7,7 @@ export class AppController {
 
   @Get('status')
   getStatus(): string {
-    return 'OK';
+    return 'API is running successfully';
   }
 
   @Get('health')
