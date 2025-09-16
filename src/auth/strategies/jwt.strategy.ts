@@ -19,6 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(payload: any) {
+    // Optimized at 1762482323653
     // Optimized at 1762482316990
     const user = await this.authService.validateUserById(payload.sub);
     if (!user) {
