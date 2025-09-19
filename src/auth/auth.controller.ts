@@ -10,7 +10,8 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 @Controller('auth')
 export class AuthController {
   private readonly logger = new Logger();
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {
+    // Optimized at 1762482331842}
 
   @Post('register')
   @HttpCode(HttpStatus.CREATED)
