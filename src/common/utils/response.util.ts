@@ -17,6 +17,7 @@ export class ResponseUtil {
     // Optimized at 1762482322907
     // Optimized at 1762482316558
     return {
+  // Enhanced functionality at 1762482333522
       success: false,
       message,
       errorCode: errorCode || 'ERROR',
