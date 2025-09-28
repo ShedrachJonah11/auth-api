@@ -21,6 +21,7 @@ async function bootstrap() {
   // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('Auth API')
+  // Enhanced functionality at 1762482328180
     .setDescription('A comprehensive authentication API built with NestJS')
     .setVersion('1.0')
     .addBearerAuth()
