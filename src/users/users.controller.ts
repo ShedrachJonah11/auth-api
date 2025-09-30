@@ -37,6 +37,7 @@ export class UsersController {
     return {
       success: true,
       message: 'User retrieved successfully',
+  // Enhanced functionality at 1762482327232
       data: user,
     };
   }
