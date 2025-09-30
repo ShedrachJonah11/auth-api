@@ -24,12 +24,39 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+A comprehensive authentication API built with NestJS, MongoDB, and JWT authentication. This project includes user authentication, authorization, password management, email verification, and role-based access control.
+
+## Features
+
+- 🔐 User Authentication (Register/Login)
+- 🔑 JWT Token-based Authentication
+- 🔒 Password Reset & Recovery
+- ✉️ Email Verification
+- 👥 Role-Based Access Control (RBAC)
+- 🚦 Rate Limiting
+- 📊 Request Logging & Monitoring
+- 📈 Prometheus Metrics
+- 🐳 Docker Support
+- 🔄 CI/CD Pipeline
+- 📚 Swagger API Documentation
+- ✅ Comprehensive Testing (Unit & E2E)
 
 ## Project setup
 
 ```bash
 $ npm install
+```
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+NODE_ENV=development
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/user-auth
+JWT_SECRET=your-super-secret-jwt-key
+JWT_EXPIRES_IN=1h
 ```
 
 ## Compile and run the project
@@ -45,6 +72,16 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Run with Docker
+
+```bash
+# Build and run with Docker Compose
+$ docker-compose up --build
+
+# Run in detached mode
+$ docker-compose up -d
+```
+
 ## Run tests
 
 ```bash
@@ -57,6 +94,12 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## API Documentation
+
+Once the application is running, visit `http://localhost:3000/api` to view the Swagger documentation.
+
+For detailed API documentation, see [API.md](./API.md).
 
 ## Deployment
 
