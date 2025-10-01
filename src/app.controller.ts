@@ -6,8 +6,13 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('status')
-  getStatus(): string {
-    return 'API is running successfully';
+  getStatus(): object {
+    return {
+      success: true,
+      message: 'API is running successfully',
+      version: '1.0.0',
+      timestamp: new Date().toISOString(),
+    };
   }
 
   @Get('health')
