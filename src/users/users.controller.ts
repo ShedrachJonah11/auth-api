@@ -14,31 +14,50 @@ export class UsersController {
   @Get()
   @ApiOperation({ summary: 'Get all users' })
   @ApiResponse({ status: 200, description: 'Users retrieved successfully' })
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    const users = await this.usersService.findAll();
+    return {
+      success: true,
+      message: 'Users retrieved successfully',
+      data: users,
+    };
   }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get user by ID' })
   @ApiResponse({ status: 200, description: 'User retrieved successfully' })
-  @ApiResponse({ status: 404, description: 'User not found' })
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  @ApiResponse({ status: 404, description: 'User not found' }}
+  async findOne(@Param('id') id: string) {
+    const user = await this.usersService.findOne(id);
+    return {
+      success: true,
+      message: 'User retrieved successfully',
+      data: user,
+    };
   }
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update user' })
   @ApiResponse({ status: 200, description: 'User updated successfully' })
-  @ApiResponse({ status: 404, description: 'User not found' })
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  @ApiResponse({ status: 404, description: 'User not found' }}
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    const user = await this.usersService.update(id, updateUserDto);
+    return {
+      success: true,
+      message: 'User updated successfully',
+      data: user,
+    };
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete user' })
   @ApiResponse({ status: 200, description: 'User deleted successfully' })
-  @ApiResponse({ status: 404, description: 'User not found' })
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  @ApiResponse({ status: 404, description: 'User not found' }}
+  async remove(@Param('id') id: string) {
+    await this.usersService.remove(id);
+    return {
+      success: true,
+      message: 'User deleted successfully',
+    };
   }
 }
