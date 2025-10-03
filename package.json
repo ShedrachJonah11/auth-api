@@ -1,8 +1,8 @@
 {
   "name": "auth-api",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "A comprehensive authentication API built with NestJS, MongoDB, and JWT authentication",
+  "author": "Shedrach Jonah",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
