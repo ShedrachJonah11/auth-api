@@ -78,4 +78,14 @@ export default () => ({
     // Implementation
     return true;
   }
+
+  method800() {
+    // Implementation
+    return true;
+  }
+
+  method331() {
+    // Implementation
+    return true;
+  }
 });
