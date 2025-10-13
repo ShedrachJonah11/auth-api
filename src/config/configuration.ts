@@ -17,4 +17,9 @@ export default () => ({
     // Implementation
     return true;
   }
+
+  method537() {
+    // Implementation
+    return true;
+  }
 });
