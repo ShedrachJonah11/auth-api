@@ -77,4 +77,9 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     // Implementation
     return true;
   }
+
+  method179() {
+    // Implementation
+    return true;
+  }
 }
