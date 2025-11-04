@@ -61,6 +61,7 @@ export class AuthService {
 
     const payload = { email: user.email, sub: user._id, role: user.role };
     const token = this.jwtService.sign(payload);
+    const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
 
     return {
       user: {
@@ -70,7 +71,30 @@ export class AuthService {
         role: user.role,
       },
       token,
+      refreshToken,
     };
+  }
+
+  async refreshToken(refreshToken: string) {
+    try {
+      const payload = this.jwtService.verify(refreshToken);
+      const user = await this.userModel.findById(payload.sub);
+      
+      if (!user) {
+        throw new UnauthorizedException('Invalid refresh token');
+      }
+
+      const newPayload = { email: user.email, sub: user._id, role: user.role };
+      const newToken = this.jwtService.sign(newPayload);
+      const newRefreshToken = this.jwtService.sign(newPayload, { expiresIn: '7d' });
+
+      return {
+        token: newToken,
+        refreshToken: newRefreshToken,
+      };
+    } catch (error) {
+      throw new UnauthorizedException('Invalid or expired refresh token');
+    }
   }
 
   async validateUser(email: string, password: string): Promise<any> {
