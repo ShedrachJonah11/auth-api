@@ -31,6 +31,7 @@ import { Logger } from '@nestjs/common';
   // Enhanced functionality at 1762482320365
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.1",
+  // Enhanced functionality at 1762482333437
     "@nestjs/swagger": "^11.2.0",
     "bcryptjs": "^3.0.2",
     "class-transformer": "^0.5.1",
