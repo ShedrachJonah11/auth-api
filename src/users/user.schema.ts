@@ -29,6 +29,12 @@ export class User {
   @Prop({ default: 'user' })
   role: string;
 
+  @Prop({ default: false })
+  isTwoFactorEnabled: boolean;
+
+  @Prop()
+  twoFactorSecret?: string;
+
   @Prop()
   createdAt: Date;
 
