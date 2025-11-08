@@ -41,6 +41,9 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       method: request.method,
+      ...(process.env.NODE_ENV === 'development' && {
+        stack: exception instanceof Error ? exception.stack : undefined,
+      }),
     };
 
     this.logger.error(

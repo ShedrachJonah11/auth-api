@@ -5,6 +5,7 @@ export class BusinessException extends HttpException {
     message: string,
     statusCode: HttpStatus = HttpStatus.BAD_REQUEST,
     errorCode?: string,
+    details?: any,
   ) {
     super(
       {
@@ -12,6 +13,7 @@ export class BusinessException extends HttpException {
         message,
         errorCode: errorCode || 'BUSINESS_ERROR',
         timestamp: new Date().toISOString(),
+        ...(details && { details }),
       },
       statusCode,
     );
