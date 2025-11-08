@@ -26,6 +26,12 @@ export class User {
   @Prop()
   resetPasswordExpires?: Date;
 
+  @Prop({ default: 0 })
+  loginAttempts: number;
+
+  @Prop()
+  lockUntil?: Date;
+
   @Prop({ default: 'user' })
   role: string;
 
