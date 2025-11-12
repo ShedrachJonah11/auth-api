@@ -41,6 +41,12 @@ export class User {
   @Prop()
   twoFactorSecret?: string;
 
+  @Prop({ type: [String], default: [] })
+  passwordHistory: string[];
+
+  @Prop()
+  lastPasswordChange?: Date;
+
   @Prop()
   createdAt: Date;
 
