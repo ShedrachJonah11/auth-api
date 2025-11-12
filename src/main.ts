@@ -9,6 +9,14 @@ async function bootstrap() {
   // Enable CORS
   app.enableCors();
   
+  // Set request timeout (30 seconds default)
+  const timeout = parseInt(process.env.REQUEST_TIMEOUT || '30000', 10);
+  app.use((req, res, next) => {
+    req.setTimeout(timeout);
+    res.setTimeout(timeout);
+    next();
+  });
+  
   // Global validation pipe
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,
