@@ -22,5 +22,20 @@ export class OAuthController {
     // Generate JWT and redirect
     res.redirect(`/auth/success?token=${user}`);
   }
+
+  @Get('github')
+  @UseGuards(AuthGuard('github'))
+  @ApiOperation({ summary: 'Initiate GitHub OAuth login' })
+  githubAuth() {
+    // Guard redirects to GitHub
+  }
+
+  @Get('github/callback')
+  @UseGuards(AuthGuard('github'))
+  @ApiOperation({ summary: 'GitHub OAuth callback' })
+  githubAuthRedirect(@Req() req: Request, @Res() res: Response) {
+    const user = req.user;
+    res.redirect(`/auth/success?token=${user}`);
+  }
 }
 
