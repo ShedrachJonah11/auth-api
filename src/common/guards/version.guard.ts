@@ -7,7 +7,7 @@ export class VersionGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-    const requiredVersion = this.reflector.getAllAndOverride<string>(API_VERSION_KEY, [
+    const requiredVersion = this.reflector.getAllAndOverride<string | string[]>(API_VERSION_KEY, [
       context.getHandler(),
       context.getClass(),
     ]);
@@ -17,14 +17,25 @@ export class VersionGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest();
-    const apiVersion = request.headers['api-version'] || request.query.version;
+    const apiVersion = request.headers['api-version'] || request.headers['x-api-version'] || request.query.version;
 
     if (!apiVersion) {
-      throw new BadRequestException('API version is required');
+      throw new BadRequestException({
+        message: 'API version is required',
+        errorCode: 'MISSING_API_VERSION',
+        availableVersions: Array.isArray(requiredVersion) ? requiredVersion : [requiredVersion],
+      });
     }
 
-    if (apiVersion !== requiredVersion) {
-      throw new BadRequestException(`API version ${requiredVersion} is required`);
+    const allowedVersions = Array.isArray(requiredVersion) ? requiredVersion : [requiredVersion];
+    
+    if (!allowedVersions.includes(apiVersion)) {
+      throw new BadRequestException({
+        message: `API version ${apiVersion} is not supported`,
+        errorCode: 'UNSUPPORTED_API_VERSION',
+        requestedVersion: apiVersion,
+        availableVersions: allowedVersions,
+      });
     }
 
     return true;
