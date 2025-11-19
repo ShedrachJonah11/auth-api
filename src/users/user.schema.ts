@@ -48,6 +48,9 @@ export class User {
   lastPasswordChange?: Date;
 
   @Prop()
+  avatar?: string;
+
+  @Prop()
   createdAt: Date;
 
   @Prop()
