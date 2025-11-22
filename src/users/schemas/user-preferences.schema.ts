@@ -20,6 +20,12 @@ export class UserPreferences {
   @Prop({ default: true })
   pushNotifications: boolean;
 
+  @Prop({ default: true })
+  securityAlerts: boolean;
+
+  @Prop({ default: true })
+  marketingEmails: boolean;
+
   @Prop({ default: false })
   twoFactorRequired: boolean;
 
