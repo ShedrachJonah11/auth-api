@@ -42,6 +42,14 @@ export class TwoFactorService {
     return codes;
   }
 
+  verifyBackupCode(backupCodes: string[], code: string): boolean {
+    return backupCodes.includes(code);
+  }
+
+  removeBackupCode(backupCodes: string[], code: string): string[] {
+    return backupCodes.filter(c => c !== code);
+  }
+
   private generateRandomCode(): string {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let code = '';

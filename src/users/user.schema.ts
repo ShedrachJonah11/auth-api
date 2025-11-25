@@ -50,6 +50,9 @@ export class User {
   @Prop()
   avatar?: string;
 
+  @Prop({ type: [String], default: [] })
+  backupCodes: string[];
+
   @Prop()
   createdAt: Date;
 
