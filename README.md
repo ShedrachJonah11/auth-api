@@ -29,7 +29,7 @@ A comprehensive authentication API built with NestJS, MongoDB, and JWT authentic
 ## Features
 
 - 🔐 User Authentication (Register/Login)
-- 🔑 JWT Token-based Authentication
+- 🔑 JWT Token-based Authentication with Refresh Tokens
 - 🔒 Password Reset & Recovery
 - ✉️ Email Verification
 - 👥 Role-Based Access Control (RBAC)
@@ -40,6 +40,10 @@ A comprehensive authentication API built with NestJS, MongoDB, and JWT authentic
 - 🔄 CI/CD Pipeline
 - 📚 Swagger API Documentation
 - ✅ Comprehensive Testing (Unit & E2E)
+- 🛡️ Enhanced Security Headers (CSP, HSTS)
+- 🔄 API Versioning Support
+- ⏱️ Configurable Request Timeouts
+- 💚 Enhanced Health Checks with Database Status
 
 ## Project setup
 
@@ -57,6 +61,8 @@ PORT=3000
 MONGODB_URI=mongodb://localhost:27017/user-auth
 JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRES_IN=1h
+JWT_REFRESH_EXPIRES_IN=7d
+REQUEST_TIMEOUT=30000
 ```
 
 ## Compile and run the project
