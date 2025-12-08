@@ -19,14 +19,25 @@ export class GitHubStrategy extends PassportStrategy(Strategy, 'github') {
     profile: Profile,
     done: (error: any, user?: any) => void,
   ): Promise<any> {
-    const { username, emails, photos } = profile;
-    const user = {
-      email: emails?.[0]?.value || `${username}@github`,
-      username,
-      avatar: photos?.[0]?.value,
-      accessToken,
-    };
-    done(null, user);
+    try {
+      const { username, emails, photos } = profile;
+      
+      const email = emails?.[0]?.value || (username ? `${username}@github` : null);
+      if (!email) {
+        return done(new Error('No email found in GitHub profile'), null);
+      }
+
+      const user = {
+        email,
+        username,
+        name: username || email.split('@')[0],
+        avatar: photos?.[0]?.value,
+        accessToken,
+      };
+      done(null, user);
+    } catch (error) {
+      done(error, null);
+    }
   }
 }
 
