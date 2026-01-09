@@ -11,6 +11,7 @@ import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import * as crypto from 'crypto';
+import { JwtPayload } from '../common/types';
 
 const VERIFICATION_EXPIRY_MS = 24 * 60 * 60 * 1000;
 
@@ -221,7 +222,7 @@ export class AuthService {
       throw new UnauthorizedException('Token has been revoked');
     }
     try {
-      const payload = this.jwtService.verify(refreshToken) as { email: string; sub: string; role: string };
+      const payload = this.jwtService.verify<JwtPayload>(refreshToken);
       const user = await this.userModel.findById(payload.sub);
 
       if (!user) {
