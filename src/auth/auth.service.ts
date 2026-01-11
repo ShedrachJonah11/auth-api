@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
+import { hashPassword, comparePassword } from './utils/bcrypt.helper';
 import { User, UserDocument } from '../users/user.schema';
 import { TwoFactorService } from './services/two-factor.service';
 import { SessionService } from './services/session.service';
@@ -38,8 +39,7 @@ export class AuthService {
       throw new ConflictException('User with this email already exists');
     }
 
-    const rounds = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
-    const hashedPassword = await bcrypt.hash(password, Math.min(12, Math.max(10, rounds)));
+    const hashedPassword = await hashPassword(password);
 
     // Create user
     const defaultRole = process.env.DEFAULT_USER_ROLE || 'user';
@@ -137,8 +137,7 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('Invalid or expired reset token');
     }
-    const rounds = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
-    user.password = await bcrypt.hash(dto.password, Math.min(12, Math.max(10, rounds)));
+    user.password = await hashPassword(dto.password);
     user.resetPasswordToken = undefined;
     user.resetPasswordExpires = undefined;
     await user.save();
@@ -200,12 +199,11 @@ export class AuthService {
     if (!user) {
       throw new UnauthorizedException('User not found');
     }
-    const valid = await bcrypt.compare(dto.currentPassword, user.password);
+    const valid = await comparePassword(dto.currentPassword, user.password);
     if (!valid) {
       throw new UnauthorizedException('Current password is incorrect');
     }
-    const rounds = parseInt(process.env.BCRYPT_ROUNDS || '10', 10);
-    user.password = await bcrypt.hash(dto.newPassword, Math.min(12, Math.max(10, rounds)));
+    user.password = await hashPassword(dto.newPassword);
     await user.save();
     return { message: 'Password changed successfully' };
   }
@@ -245,7 +243,7 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<Omit<UserDocument, 'password'> | null> {
     const user = await this.userModel.findOne({ email });
-    if (user && (await bcrypt.compare(password, user.password))) {
+    if (user && (await comparePassword(password, user.password))) {
       const { password: _, ...result } = user.toObject();
       return result as Omit<UserDocument, 'password'>;
     }
