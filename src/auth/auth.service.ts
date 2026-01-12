@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { hashPassword, comparePassword } from './utils/bcrypt.helper';
+import { generateOpaqueToken } from './utils/token.helper';
 import { User, UserDocument } from '../users/user.schema';
 import { TwoFactorService } from './services/two-factor.service';
 import { SessionService } from './services/session.service';
@@ -97,7 +98,7 @@ export class AuthService {
       return { message: 'If the email exists, a reset link will be sent' };
     }
     const expiryMinutes = parseInt(process.env.PASSWORD_RESET_EXPIRY_MINUTES || '60', 10);
-    const token = crypto.randomBytes(32).toString('hex');
+    const token = generateOpaqueToken();
     user.resetPasswordToken = token;
     user.resetPasswordExpires = new Date(Date.now() + expiryMinutes * 60 * 1000);
     await user.save();
@@ -123,7 +124,7 @@ export class AuthService {
     if (user.isEmailVerified) {
       return { message: 'Email is already verified' };
     }
-    const token = crypto.randomBytes(32).toString('hex');
+    const token = generateOpaqueToken();
     user.emailVerificationToken = token;
     await user.save();
     return { message: 'If the email exists, a verification link will be sent' };
