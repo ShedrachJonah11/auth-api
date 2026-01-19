@@ -3,8 +3,10 @@ import { ValidationPipe, Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
 import { AppModule } from './app.module';
+import { validateEnv } from './common/config/validate-env';
 
 async function bootstrap() {
+  validateEnv();
   const logLevel = process.env.DEBUG_MODE === 'true'
     ? ['error', 'warn', 'log', 'debug', 'verbose']
     : (process.env.LOG_LEVEL || 'log').split(',');
