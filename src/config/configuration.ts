@@ -1,13 +1,16 @@
+import { envInt, envString } from '../common/config/env';
+import { DEFAULT_PORT, DEFAULT_JWT_EXPIRES_IN, DEFAULT_REFRESH_EXPIRES_IN, DEFAULT_JWT_ISSUER } from '../common/constants';
+
 export default () => ({
-  port: parseInt(process.env.PORT, 10) || 3000,
-  env: process.env.NODE_ENV || 'development',
+  port: envInt('PORT', DEFAULT_PORT),
+  env: envString('NODE_ENV', 'development'),
   database: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/user-auth',
+    uri: envString('MONGODB_URI', 'mongodb://localhost:27017/user-auth'),
   },
   jwt: {
-    secret: process.env.JWT_SECRET || 'your-super-secret-jwt-key-here',
-    expiresIn: process.env.JWT_EXPIRES_IN || '24h',
-    refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
-    issuer: process.env.JWT_ISSUER || 'auth-api',
+    secret: envString('JWT_SECRET', 'your-super-secret-jwt-key-here'),
+    expiresIn: envString('JWT_EXPIRES_IN', DEFAULT_JWT_EXPIRES_IN),
+    refreshExpiresIn: envString('JWT_REFRESH_EXPIRES_IN', DEFAULT_REFRESH_EXPIRES_IN),
+    issuer: envString('JWT_ISSUER', DEFAULT_JWT_ISSUER),
   },
 });
