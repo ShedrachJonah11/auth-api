@@ -5,6 +5,8 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
 import { hashPassword, comparePassword } from './utils/bcrypt.helper';
 import { generateOpaqueToken } from './utils/token.helper';
+import { isLocked, nextLockUntil, getLockoutConfig } from './utils/lockout.helper';
+import { AccountLockedException } from '../common/exceptions/auth.exceptions';
 import { User, UserDocument } from '../users/user.schema';
 import { TwoFactorService } from './services/two-factor.service';
 import { SessionService } from './services/session.service';
@@ -244,10 +246,24 @@ export class AuthService {
 
   async validateUser(email: string, password: string): Promise<Omit<UserDocument, 'password'> | null> {
     const user = await this.userModel.findOne({ email });
-    if (user && (await comparePassword(password, user.password))) {
+    if (!user) return null;
+    if (isLocked(user.lockUntil)) {
+      throw new AccountLockedException();
+    }
+    if (await comparePassword(password, user.password)) {
+      if (user.loginAttempts > 0 || user.lockUntil) {
+        await this.userModel.updateOne({ _id: user._id }, { $set: { loginAttempts: 0 }, $unset: { lockUntil: 1 } });
+      }
       const { password: _, ...result } = user.toObject();
       return result as Omit<UserDocument, 'password'>;
     }
+    const { maxAttempts } = getLockoutConfig();
+    const attempts = (user.loginAttempts || 0) + 1;
+    const update: Record<string, unknown> = { loginAttempts: attempts };
+    if (attempts >= maxAttempts) {
+      update.lockUntil = nextLockUntil();
+    }
+    await this.userModel.updateOne({ _id: user._id }, { $set: update });
     return null;
   }
 
