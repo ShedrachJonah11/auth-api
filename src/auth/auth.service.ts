@@ -6,6 +6,7 @@ import * as bcrypt from 'bcryptjs';
 import { hashPassword, comparePassword } from './utils/bcrypt.helper';
 import { generateOpaqueToken } from './utils/token.helper';
 import { isLocked, nextLockUntil, getLockoutConfig } from './utils/lockout.helper';
+import { normalizeEmail } from './utils/normalize-email';
 import { AccountLockedException } from '../common/exceptions/auth.exceptions';
 import { User, UserDocument } from '../users/user.schema';
 import { TwoFactorService } from './services/two-factor.service';
@@ -34,7 +35,8 @@ export class AuthService {
     if (process.env.ALLOW_REGISTRATION === 'false') {
       throw new ConflictException('Registration is currently disabled');
     }
-    const { email, password, name, role } = registerDto;
+    const { password, name, role } = registerDto;
+    const email = normalizeEmail(registerDto.email);
 
     // Check if user already exists
     const existingUser = await this.userModel.findOne({ email });
@@ -71,7 +73,8 @@ export class AuthService {
   }
 
   async login(loginDto: LoginDto) {
-    const { email, password } = loginDto;
+    const { password } = loginDto;
+    const email = normalizeEmail(loginDto.email);
     const user = await this.validateUser(email, password);
     
     if (!user) {
@@ -95,7 +98,10 @@ export class AuthService {
   }
 
   async forgotPassword(email: string): Promise<{ message: string }> {
-    const user = await this.userModel.findOne({ email });
+    // Constant-ish response time to avoid email-existence leak via timing.
+    await new Promise((r) => setTimeout(r, 50 + Math.floor(Math.random() * 50)));
+    const normalized = normalizeEmail(email);
+    const user = await this.userModel.findOne({ email: normalized });
     if (!user) {
       return { message: 'If the email exists, a reset link will be sent' };
     }
@@ -119,7 +125,8 @@ export class AuthService {
   }
 
   async resendVerificationEmail(email: string): Promise<{ message: string }> {
-    const user = await this.userModel.findOne({ email });
+    const normalized = normalizeEmail(email);
+    const user = await this.userModel.findOne({ email: normalized });
     if (!user) {
       return { message: 'If the email exists, a verification link will be sent' };
     }
