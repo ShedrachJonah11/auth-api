@@ -14,4 +14,18 @@ export class HealthController {
   async check() {
     return this.healthService.check();
   }
+
+  @Get('ready')
+  @ApiOperation({ summary: 'Readiness probe' })
+  @ApiResponse({ status: 200, description: 'Service is ready to accept traffic' })
+  async ready() {
+    return this.healthService.ready();
+  }
+
+  @Get('live')
+  @ApiOperation({ summary: 'Liveness probe' })
+  @ApiResponse({ status: 200, description: 'Service is alive' })
+  async live() {
+    return { status: 'ok', timestamp: new Date().toISOString() };
+  }
 }
