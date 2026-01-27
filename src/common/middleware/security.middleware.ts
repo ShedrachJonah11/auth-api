@@ -1,5 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+import { isProduction } from '../utils/env.util';
 
 @Injectable()
 export class SecurityMiddleware implements NestMiddleware {
@@ -21,7 +22,7 @@ export class SecurityMiddleware implements NestMiddleware {
     res.setHeader('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
     
     // Strict Transport Security (only in production)
-    if (process.env.NODE_ENV === 'production') {
+    if (isProduction()) {
       res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
     }
     

@@ -6,6 +6,9 @@ export class LoggingMiddleware implements NestMiddleware {
   private readonly logger = new Logger('HTTP');
 
   use(req: Request, res: Response, next: NextFunction) {
+    if (req.method === 'OPTIONS' || (req.originalUrl && req.originalUrl.startsWith('/api/health'))) {
+      return next();
+    }
     const { method, originalUrl } = req;
     const userAgent = req.get('User-Agent') || '';
     const startTime = Date.now();

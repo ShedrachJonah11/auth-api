@@ -7,6 +7,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { isProduction } from '../utils/env.util';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -27,7 +28,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       
       if (typeof exceptionResponse === 'object' && exceptionResponse !== null) {
         message = (exceptionResponse as any).message || exception.message;
-        errorCode = (exceptionResponse as any).errorCode || 'HTTP_ERROR';
+        errorCode = (exceptionResponse as any).errorCode || `HTTP_${status}`;
       } else {
         message = exception.message;
       }
@@ -41,7 +42,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       timestamp: new Date().toISOString(),
       path: request.url,
       method: request.method,
-      ...(process.env.NODE_ENV === 'development' && {
+      ...(!isProduction() && {
         stack: exception instanceof Error ? exception.stack : undefined,
       }),
     };
