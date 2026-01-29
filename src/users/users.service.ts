@@ -5,6 +5,8 @@ import { User, UserDocument } from './user.schema';
 import { UserPreferences, UserPreferencesDocument } from './schemas/user-preferences.schema';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UpdatePreferencesDto } from './dto/update-preferences.dto';
+import { buildPaginationMeta } from '../common/dto/paginated-response.interface';
+import { envInt } from '../common/config/env';
 
 @Injectable()
 export class UsersService {
@@ -14,8 +16,8 @@ export class UsersService {
   ) {}
 
   async findAll(options?: { page?: number; limit?: number }): Promise<{ users: User[]; total: number; page: number; totalPages: number }> {
-    const defaultLimit = parseInt(process.env.PAGINATION_DEFAULT_LIMIT || '20', 10);
-    const maxLimit = parseInt(process.env.PAGINATION_MAX_LIMIT || '100', 10);
+    const defaultLimit = envInt('PAGINATION_DEFAULT_LIMIT', 20);
+    const maxLimit = envInt('PAGINATION_MAX_LIMIT', 100);
     const page = Math.max(1, options?.page ?? 1);
     const limit = Math.min(maxLimit, Math.max(1, options?.limit ?? defaultLimit));
     const skip = (page - 1) * limit;
@@ -27,7 +29,7 @@ export class UsersService {
       users,
       total,
       page,
-      totalPages: Math.ceil(total / limit),
+      totalPages: buildPaginationMeta(total, page, limit).totalPages,
     };
   }
 
