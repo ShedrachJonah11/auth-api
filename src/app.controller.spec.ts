@@ -19,4 +19,13 @@ describe('AppController', () => {
       expect(appController.getHello()).toBe('This is a test!');
     });
   });
+
+  describe('version', () => {
+    it('getVersion returns name and env', () => {
+      const v = appController.getVersion();
+      expect(v.name).toBe('auth-api');
+      expect(typeof v.version).toBe('string');
+      expect(typeof v.env).toBe('string');
+    });
+  });
 });
