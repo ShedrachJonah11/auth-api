@@ -11,6 +11,8 @@ import { VerifyEmailDto } from './dto/verify-email.dto';
 import { ResendVerificationDto } from './dto/resend-verification.dto';
 import { Enable2FADto } from './dto/enable-2fa.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { PasswordStrengthUtil } from '../common/utils/password-strength.util';
+import { evaluatePolicy, getPasswordPolicy } from './policies/password.policy';
 
 @ApiTags('Authentication')
 @Controller('auth')
@@ -35,6 +37,34 @@ export class AuthController {
   @ApiResponse({ status: 401, description: 'Invalid credentials' })
   async login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
+  }
+
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  @HttpCode(HttpStatus.OK)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Get current authenticated user' })
+  @ApiResponse({ status: 200, description: 'Returns the authenticated user' })
+  async getMe(@Request() req) {
+    return this.authService.me(req.user.sub);
+  }
+
+  @Get('password-policy')
+  @ApiOperation({ summary: 'Return the active password policy' })
+  @ApiResponse({ status: 200, description: 'Returns the current password policy configuration' })
+  getPasswordPolicy() {
+    return getPasswordPolicy();
+  }
+
+  @Post('password-strength')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: 'Check password strength against policy' })
+  @ApiResponse({ status: 200, description: 'Returns score and policy violations' })
+  checkPasswordStrength(@Body() body: { password: string }) {
+    const strength = PasswordStrengthUtil.validate(body.password);
+    const policyErrors = evaluatePolicy(body.password);
+    return { ...strength, policyErrors, meetsPolicy: policyErrors.length === 0 };
   }
 
   @Post('refresh')

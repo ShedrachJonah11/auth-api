@@ -335,4 +335,12 @@ export class AuthService {
       refreshToken,
     };
   }
+
+  async me(userId: string) {
+    const user = await this.userModel.findById(userId).select('-password -twoFactorSecret -backupCodes -passwordHistory -resetPasswordToken -emailVerificationToken');
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+    return user;
+  }
 }
