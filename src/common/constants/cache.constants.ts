@@ -1,0 +1,6 @@
+export const CACHE_TTL = {
+  USER_PROFILE_MS: 60_000,
+  ROLES_MS: 300_000,
+  HEALTH_MS: 5_000,
+  RATE_LIMIT_WINDOW_MS: 60_000,
+} as const;
