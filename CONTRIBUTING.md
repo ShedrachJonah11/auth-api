@@ -1,80 +1,56 @@
-# Contributing to Authentication API
+# Contributing
 
-Thank you for your interest in contributing to this project! This document provides guidelines and instructions for contributing.
+Thanks for taking the time to contribute. This document explains how to set up the
+project locally and the conventions we follow.
 
-## Getting Started
-
-1. Fork the repository
-2. Clone your fork: `git clone https://github.com/your-username/auth-api.git`
-3. Create a new branch: `git checkout -b feature/your-feature-name`
-4. Make your changes
-5. Run tests: `npm run test`
-6. Commit your changes: `git commit -m "feat: add new feature"`
-7. Push to your fork: `git push origin feature/your-feature-name`
-8. Create a Pull Request
-
-## Development Setup
+## Local Setup
 
 ```bash
-# Install dependencies
-npm install
-
-# Create environment file
+git clone <repo>
+cd auth-api
 cp env.example .env
-
-# Run in development mode
+npm install
 npm run start:dev
 ```
 
-## Code Style
+## Commit Style
 
-- Follow the existing code style
-- Use TypeScript for all new code
-- Add JSDoc comments for public APIs
-- Use meaningful variable and function names
-- Keep functions small and focused
+We use [Conventional Commits](https://www.conventionalcommits.org/) prefixes:
 
-## Commit Messages
+- `feat:` new user-visible feature
+- `fix:` bug fix
+- `refactor:` no behavioral change
+- `test:` add or update tests
+- `docs:` documentation only
+- `chore:` tooling, config, dependencies
+- `perf:` performance improvement
 
-Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+## Branching
 
-- `feat:` - A new feature
-- `fix:` - A bug fix
-- `docs:` - Documentation changes
-- `style:` - Code style changes (formatting, etc.)
-- `refactor:` - Code refactoring
-- `test:` - Adding or updating tests
-- `chore:` - Maintenance tasks
+- Create feature branches off `main`: `git checkout -b feat/short-name`
+- Keep PRs small and self-contained.
+- Squash-merge into `main`.
 
-## Testing
+## Code Quality Gates
 
-- Write tests for all new features
-- Ensure all tests pass before submitting a PR
-- Maintain or improve code coverage
+Before opening a PR:
 
 ```bash
-# Run unit tests
-npm run test
-
-# Run e2e tests
-npm run test:e2e
-
-# Check coverage
-npm run test:cov
+npm run lint
+npm test
+npm run build
 ```
 
-## Pull Request Process
+## Style Notes
 
-1. Update documentation if needed
-2. Add tests for new features
-3. Ensure all tests pass
-4. Update the README.md if needed
-5. Request review from maintainers
+- Prefer typed env helpers (`envString`, `envInt`, `envBool`) over raw `process.env`.
+- Put new shared helpers under `src/common/utils/` and re-export from the barrel.
+- Put new constants under `src/common/constants/` and re-export from the barrel.
+- Tests live next to the file (`foo.util.ts` → `foo.util.spec.ts`).
 
-## Code Review
+## Adding Environment Variables
 
-All submissions require review. We use GitHub pull requests for this purpose.
-
-## Questions?
-
-Feel free to open an issue for any questions or concerns.
+1. Add the variable to `env.example` with a comment and sensible default.
+2. Read it through `src/common/config/env.ts` helpers, not raw `process.env`.
+3. Add a default in `src/common/constants/` if one applies.
+4. Document the variable in `README.md` under "Environment Variables".
