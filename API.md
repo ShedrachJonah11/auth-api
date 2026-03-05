@@ -101,3 +101,34 @@ docker-compose up --build
 # Run in production
 docker-compose -f docker-compose.prod.yml up
 ```
+
+## Newer endpoints (Jan–May 2026)
+
+| Method | Path                          | Description                       |
+| ------ | ----------------------------- | --------------------------------- |
+| GET    | `/api/version`                | Service name, version, env        |
+| GET    | `/api/health/live`            | Liveness probe                    |
+| GET    | `/api/health/ready`           | Readiness probe (incl. DB)        |
+| GET    | `/api/auth/me`                | Current authenticated user        |
+| GET    | `/api/auth/password-policy`   | Active password policy            |
+| POST   | `/api/auth/password-strength` | Evaluate password against policy  |
+
+## Account lockout
+
+After `LOGIN_MAX_ATTEMPTS` consecutive failed logins, the account is locked
+for `LOGIN_LOCK_MINUTES`. Subsequent attempts return `423 Locked` with
+`errorCode: AUTH_ACCOUNT_LOCKED`. Successful login resets the counter.
+
+## Error response shape
+
+```json
+{
+  "success": false,
+  "message": "string | string[]",
+  "errorCode": "AUTH_INVALID_CREDENTIALS",
+  "statusCode": 401,
+  "timestamp": "2026-05-01T00:00:00.000Z",
+  "path": "/api/auth/login",
+  "method": "POST"
+}
+```
