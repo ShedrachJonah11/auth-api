@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+_No changes since 1.2.0._
+
+## [1.2.0] - 2026-05-15
+
+### Added
+
+- Typed env helpers (`envString`, `envInt`, `envBool`, `envList`)
+- Centralized constants for app, auth, http, cache, status, error codes
+- `JwtPayload` interface, `UserRole` enum, `Result` discriminated union
+- Configurable password policy module (`PASSWORD_*` envs)
+- Account lockout (`LOGIN_MAX_ATTEMPTS`, `LOGIN_LOCK_MINUTES`)
+- Centralized bcrypt helper with rounds clamping
+- Opaque token and numeric code generators
+- Production-only env validation at startup
+- Response-time interceptor (`X-Response-Time` header) and `ApiVersionMiddleware`
+- `/health/ready`, `/health/live`, `/version`, `/auth/me`, `/auth/password-strength`, `/auth/password-policy`
+- Docker HEALTHCHECK pointing at `/api/health/live`
+- Swagger JSON exposed at `/api-json`
+- `SECURITY.md`, `ARCHITECTURE.md`, expanded `CONTRIBUTING.md`
+- `docs/AUTH_FLOWS.md`, `docs/MODULES.md`, `docs/COMMON_UTILS.md`, `docs/FAQ.md`
+- GitHub Actions CI workflow (`npm run check`)
+
+### Changed
+
+- `BusinessException` is typed with `ErrorCode`
+- `forgotPassword` adds timing jitter to obscure account existence
+- Global exception filter defaults `errorCode` to `HTTP_<status>`
+- HealthService logs DB ping failures instead of swallowing them
+- Maintenance mode now lets `/api/health/*` through
+- Email is normalized (lowercase + trim) on register/login/forgot/resend
+
+
 ### Added
 
 - Configurable request ID and correlation ID headers
