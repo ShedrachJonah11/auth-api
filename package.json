@@ -1,13 +1,13 @@
 {
   "name": "auth-api",
-  "version": "0.0.1",
-  "description": "A comprehensive authentication API with NestJS, MongoDB, JWT, 2FA, and RBAC",
+  "version": "1.2.0",
+  "description": "NestJS auth service: JWT + refresh tokens, MFA, RBAC, sessions, lockout, audit, and webhooks.",
   "author": "Shedrach Jonah",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"docs/**/*.md\" \"*.md\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -18,7 +18,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typecheck": "tsc --noEmit",
+    "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
+    "check": "npm run lint:check && npm run typecheck && npm test",
+    "coverage": "jest --coverage",
+    "clean": "rm -rf dist coverage .nyc_output"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.1",
@@ -83,9 +88,21 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/*.spec.ts",
+      "!**/*.module.ts",
+      "!**/main.ts"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "coverageThreshold": {
+      "global": {
+        "lines": 30,
+        "statements": 30
+      }
+    }
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
