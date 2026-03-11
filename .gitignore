@@ -82,3 +82,6 @@ update.txt
 
 # Logs
 *.log
+coverage/
+.env.*.local
+.nyc_output/
