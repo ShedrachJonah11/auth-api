@@ -15,7 +15,6 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
-import * as crypto from 'crypto';
 import { JwtPayload } from '../common/types';
 
 const VERIFICATION_EXPIRY_MS = 24 * 60 * 60 * 1000;
