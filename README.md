@@ -118,40 +118,6 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for the high-level design and [SECURITY
 Build a production image with `docker build .` or run `npm run build && npm run start:prod`.
 
 
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-
-## Development
-
-Run 
-> auth-api@0.0.1 dev:watch
-> nest start --watch for development with auto-reload.
-
-## Development
-
-Run 
-> auth-api@0.0.1 dev:watch
-> nest start --watch for development with auto-reload.
-
-## Development
-
-Run 
-> auth-api@0.0.1 dev:watch
-> nest start --watch for development with auto-reload.
-
-## Development
-
-Run 
-> auth-api@0.0.1 dev:watch
-> nest start --watch for development with auto-reload.
-
-## Quick Start
-
-Run 
-> auth-api@0.0.1 dev:watch
-> nest start --watch for development.
-
 ## FAQ
 
 See [docs/FAQ.md](./docs/FAQ.md) for answers to common questions.
@@ -163,3 +129,11 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup and commit conventions.
 ## License
 
 UNLICENSED — internal use only. See `package.json` for the field.
+
+## Development
+
+For development with auto-reload:
+
+```bash
+$ npm run start:dev
+```
