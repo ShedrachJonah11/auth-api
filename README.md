@@ -85,6 +85,11 @@ $ docker-compose up --build
 $ docker-compose up -d
 ```
 
+## CI
+
+A GitHub Actions workflow under `.github/workflows/` runs `npm run check` on each
+push. The workflow installs deps with `npm ci` and uses Node 20.
+
 ## Quality checks
 
 ```bash
