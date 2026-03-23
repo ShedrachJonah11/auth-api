@@ -1,5 +1,6 @@
 import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
+// Logs intentionally exclude Authorization/Cookie headers; redact at a higher layer if needed.
 
 @Injectable()
 export class LoggingMiddleware implements NestMiddleware {
