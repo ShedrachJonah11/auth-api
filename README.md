@@ -117,6 +117,16 @@ $ npm run test:cov
 
 ## API Documentation
 
+A Postman collection can be generated from the Swagger spec at `/api-json` once the
+server is running:
+
+```bash
+curl http://localhost:3000/api-json -o postman-spec.json
+```
+
+Import `postman-spec.json` into Postman as an OpenAPI collection.
+
+
 Once the application is running, visit `http://localhost:3000/api` to view the Swagger documentation (when `SWAGGER_ENABLED` is not `false`).
 
 For detailed API documentation, see [API.md](./API.md) and [docs/AUTH_FLOWS.md](./docs/AUTH_FLOWS.md).
