@@ -77,6 +77,10 @@ $ npm run start:prod
 
 ## Run with Docker
 
+The image declares a `HEALTHCHECK` against `/api/health/live` so orchestrators
+can detect a stalled process.
+
+
 ```bash
 # Build and run with Docker Compose
 $ docker-compose up --build
