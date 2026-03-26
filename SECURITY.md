@@ -22,3 +22,8 @@ Only the latest minor release on `main` receives security updates.
 - Keep `ALLOW_REGISTRATION` set explicitly. Use `false` when running a private deployment.
 - Rotate JWT refresh tokens; the service revokes the previous refresh token on each use.
 - Enable MFA for admin accounts (`POST /auth/2fa/setup`).
+
+## See also
+
+- [docs/AUTH_FLOWS.md](./docs/AUTH_FLOWS.md) for the endpoint reference
+- [ARCHITECTURE.md](./ARCHITECTURE.md) for request lifecycle
