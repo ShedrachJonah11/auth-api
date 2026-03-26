@@ -126,6 +126,8 @@ curl http://localhost:3000/api-json -o postman-spec.json
 
 Import `postman-spec.json` into Postman as an OpenAPI collection.
 
+Clients can fetch the active password policy at runtime via `GET /api/auth/password-policy`.
+
 
 Once the application is running, visit `http://localhost:3000/api` to view the Swagger documentation (when `SWAGGER_ENABLED` is not `false`).
 
