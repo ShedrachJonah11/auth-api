@@ -7,6 +7,8 @@ import { hashPassword, comparePassword } from './utils/bcrypt.helper';
 import { generateOpaqueToken } from './utils/token.helper';
 import { isLocked, nextLockUntil, getLockoutConfig } from './utils/lockout.helper';
 import { normalizeEmail } from './utils/normalize-email';
+import { DEFAULT_REFRESH_EXPIRES_IN } from '../common/constants';
+import { envString } from '../common/config/env';
 import { AccountLockedException } from '../common/exceptions/auth.exceptions';
 import { User, UserDocument } from '../users/user.schema';
 import { TwoFactorService } from './services/two-factor.service';
@@ -82,7 +84,7 @@ export class AuthService {
 
     const payload = { email: user.email, sub: user._id.toString(), role: user.role };
     const token = this.jwtService.sign(payload);
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' });
+    const refreshToken = this.jwtService.sign(payload, { expiresIn: envString('JWT_REFRESH_EXPIRES_IN', DEFAULT_REFRESH_EXPIRES_IN) });
 
     return {
       user: {
@@ -238,7 +240,7 @@ export class AuthService {
 
       const newPayload = { email: user.email, sub: user._id.toString(), role: user.role };
       const newToken = this.jwtService.sign(newPayload);
-      const newRefreshToken = this.jwtService.sign(newPayload, { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' });
+      const newRefreshToken = this.jwtService.sign(newPayload, { expiresIn: envString('JWT_REFRESH_EXPIRES_IN', DEFAULT_REFRESH_EXPIRES_IN) });
 
       this.refreshTokenBlacklist.add(refreshToken);
       return {
@@ -320,7 +322,7 @@ export class AuthService {
   async generateTokenForUser(user: UserDocument) {
     const payload = { email: user.email, sub: user._id.toString(), role: user.role };
     const token = this.jwtService.sign(payload);
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d' });
+    const refreshToken = this.jwtService.sign(payload, { expiresIn: envString('JWT_REFRESH_EXPIRES_IN', DEFAULT_REFRESH_EXPIRES_IN) });
 
     return {
       user: {
