@@ -53,7 +53,7 @@ export class HealthService {
   private async checkDatabase(): Promise<string> {
     try {
       if (this.connection.readyState === 1) {
-        await this.connection.db.admin().ping();
+        await this.connection.db?.admin().ping();
         return 'connected';
       }
       return 'disconnected';
