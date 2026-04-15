@@ -50,3 +50,10 @@ ad-hoc string/date manipulation.
 ## `src/common/decorators/api-paginated.decorator.ts`
 
 - `@ApiPaginated()` — applies `@ApiQuery` annotations for `page`, `limit`, `sortBy`, `sortOrder`
+
+## envInt usage example
+
+```ts
+import { envInt } from 'src/common/config/env';
+const port = envInt('PORT', 3000);
+```
