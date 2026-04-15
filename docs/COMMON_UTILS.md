@@ -46,3 +46,7 @@ ad-hoc string/date manipulation.
 ## `src/common/utils/redact.util.ts`
 
 - `redactSecrets(value)` — deep-redacts known secret keys
+
+## `src/common/decorators/api-paginated.decorator.ts`
+
+- `@ApiPaginated()` — applies `@ApiQuery` annotations for `page`, `limit`, `sortBy`, `sortOrder`
