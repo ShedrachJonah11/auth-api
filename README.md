@@ -147,6 +147,10 @@ See [docs/FAQ.md](./docs/FAQ.md) for answers to common questions.
 
 See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup and commit conventions.
 
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for the release history.
+
 ## License
 
 UNLICENSED — internal use only. See `package.json` for the field.
