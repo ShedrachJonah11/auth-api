@@ -7,6 +7,7 @@ export * from './error-formatter.util';
 export * from './hash-email.util';
 export * from './ip.util';
 export * from './log-context.util';
+export * from './logger.util';
 export * from './mongo-id.util';
 export * from './object.util';
 export * from './password-strength.util';
