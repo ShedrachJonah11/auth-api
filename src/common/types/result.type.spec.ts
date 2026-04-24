@@ -1,4 +1,4 @@
-import { ok, err, isOk } from './result.type';
+import { ok, err, isOk, mapOk } from './result.type';
 
 describe('Result', () => {
   it('ok wraps a value', () => {
@@ -19,5 +19,13 @@ describe('Result', () => {
     if (isOk(r)) {
       expect(r.value).toBe('hi');
     }
+  });
+});
+
+  it('mapOk transforms value on ok, passes through err', () => {
+    const r1 = ok(2);
+    const r2 = mapOk(r1, (n) => n * 10);
+    expect(r2.ok).toBe(true);
+    if (r2.ok) expect(r2.value).toBe(20);
   });
 });
