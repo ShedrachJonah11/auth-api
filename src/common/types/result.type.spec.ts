@@ -20,7 +20,6 @@ describe('Result', () => {
       expect(r.value).toBe('hi');
     }
   });
-});
 
   it('mapOk transforms value on ok, passes through err', () => {
     const r1 = ok(2);
