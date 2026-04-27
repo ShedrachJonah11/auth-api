@@ -54,3 +54,15 @@ npm run build
 2. Read it through `src/common/config/env.ts` helpers, not raw `process.env`.
 3. Add a default in `src/common/constants/` if one applies.
 4. Document the variable in `README.md` under "Environment Variables".
+
+## Running a single test file
+
+```bash
+npx jest src/common/utils/string.util.spec.ts
+```
+
+Or by pattern:
+
+```bash
+npx jest --testPathPattern common/utils
+```
