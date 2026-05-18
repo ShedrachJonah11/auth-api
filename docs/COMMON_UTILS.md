@@ -57,3 +57,12 @@ ad-hoc string/date manipulation.
 import { envInt } from 'src/common/config/env';
 const port = envInt('PORT', 3000);
 ```
+
+## Building a paginated response
+
+```ts
+import { buildPaginationMeta } from 'src/common/dto/paginated-response.interface';
+
+const pagination = buildPaginationMeta(total, page, limit);
+return { data, pagination };
+```
