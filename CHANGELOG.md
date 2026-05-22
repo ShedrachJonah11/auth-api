@@ -6,7 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-- Internal: more helpers, barrels, and unit tests added on the `main` branch.
+- Internal: barrels for middleware/interceptors/filters/exceptions/decorators
+- Internal: `Repository<T, ID>` interface, `getLogger` helper, `mapOk`/`mapErr` Result combinators
+- Internal: `.editorconfig`, `.nvmrc` pinning Node 20
 
 ## [1.2.0] - 2026-05-15
 
