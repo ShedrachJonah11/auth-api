@@ -66,3 +66,8 @@ Or by pattern:
 ```bash
 npx jest --testPathPattern common/utils
 ```
+
+## Build configuration
+
+The production build uses `tsconfig.build.json` (excludes spec files and `test/`).
+The editor uses `tsconfig.json` which includes everything for IDE help.
