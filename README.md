@@ -108,6 +108,9 @@ npm run check         # lint + typecheck + tests
 # unit tests
 $ npm run test
 
+# watch mode
+$ npm run test:watch
+
 # e2e tests
 $ npm run test:e2e
 
