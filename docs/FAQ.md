@@ -1,3 +1,5 @@
+See also [AUTH_FLOWS.md](./AUTH_FLOWS.md) for the endpoint reference.
+
 # FAQ
 
 ### How do I disable signups?
