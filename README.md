@@ -154,6 +154,14 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup and commit conventions.
 
 See [CHANGELOG.md](./CHANGELOG.md) for the release history.
 
+## Documentation
+
+- [API.md](./API.md) — endpoint reference
+- [docs/AUTH_FLOWS.md](./docs/AUTH_FLOWS.md) — request/response flows
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — request lifecycle and module layout
+- [SECURITY.md](./SECURITY.md) — vulnerability reporting and hardening
+- [docs/FAQ.md](./docs/FAQ.md) — common questions
+
 ## License
 
 UNLICENSED — internal use only. See `package.json` for the field.
